@@ -4,8 +4,8 @@ import { createClient } from '@/lib/supabase/server'
 import Sidebar from './components/Sidebar'
 
 export const metadata: Metadata = {
-  title: '行政書士試験対策 | agri-gyosei.com',
-  description: '毎日更新！兼業農家・社会人のための行政書士試験対策記事。民法・行政法・憲法など科目別に徹底解説。',
+  title: '行政書士試験の勉強法｜6ヶ月間集中学習',
+  description: '毎日更新！兼業農家・社会人のための行政書士試験勉強法。6ヶ月間集中学習で合格を目指す。民法・行政法・憲法など科目別に徹底解説。',
 }
 
 export const revalidate = 3600
@@ -51,7 +51,7 @@ export default async function SikakuPage({ searchParams }: Props) {
       <header className="bg-green-800 text-white py-10 px-6">
         <div className="max-w-5xl mx-auto">
           <p className="text-green-300 text-sm mb-2 tracking-widest">agri-gyosei.com</p>
-          <h1 className="text-3xl font-bold mb-2">行政書士試験対策</h1>
+          <h1 className="text-3xl font-bold mb-2">行政書士試験の勉強法｜6ヶ月間集中学習</h1>
           <p className="text-green-200 text-sm">
             毎日1記事更新。兼業農家・社会人受験生のための合格ガイド。
           </p>
