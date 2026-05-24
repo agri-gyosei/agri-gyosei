@@ -122,6 +122,16 @@ body {
   text-align: center;
 }
 
+/* links */
+.article-body a {
+  color: #2d6a4f;
+  text-decoration: underline;
+}
+
+.article-body a:hover {
+  color: #166534;
+}
+
 /* strong */
 .article-body strong {
   color: #2d6a4f;
@@ -238,6 +248,15 @@ body {
 .dacha-body ul li {
   margin-bottom: 0.4rem;
   line-height: 1.8;
+}
+
+.dacha-body a {
+  color: #C4714A;
+  text-decoration: underline;
+}
+
+.dacha-body a:hover {
+  color: #a05a3a;
 }
 
 .dacha-body strong {

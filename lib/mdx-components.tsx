@@ -1,6 +1,7 @@
 type TableProps = React.ComponentProps<'table'>
 type UlProps = React.ComponentProps<'ul'>
 type OlProps = React.ComponentProps<'ol'>
+type AProps = React.ComponentProps<'a'>
 
 function ArticleTable({ children, ...props }: TableProps) {
   return (
@@ -30,8 +31,23 @@ function ArticleOl({ children, ...props }: OlProps) {
   )
 }
 
+function ArticleLink({ href, children, ...props }: AProps) {
+  const isExternal = href?.startsWith('http')
+  return (
+    <a
+      href={href}
+      target={isExternal ? '_blank' : undefined}
+      rel={isExternal ? 'noopener noreferrer' : undefined}
+      {...props}
+    >
+      {children}
+    </a>
+  )
+}
+
 export const articleComponents = {
   table: ArticleTable,
   ul: ArticleUl,
   ol: ArticleOl,
+  a: ArticleLink,
 }
