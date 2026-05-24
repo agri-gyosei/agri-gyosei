@@ -19,13 +19,15 @@ async function main() {
   const slug = process.argv[2]
   const from = process.argv[3]
   const to = process.argv[4]
+  // optional 5th arg: table name (default: dacha_articles, use 'articles' for sikaku)
+  const table = (process.argv[5] ?? 'dacha_articles') as 'dacha_articles' | 'articles'
 
   if (!slug || !from || !to) {
-    throw new Error('Usage: npx tsx scripts/patch-article.ts <slug> <from> <to>')
+    throw new Error('Usage: npx tsx scripts/patch-article.ts <slug> <from> <to> [table]')
   }
 
   const { data: article } = await supabase
-    .from('dacha_articles')
+    .from(table)
     .select('id, body_mdx')
     .eq('slug', slug)
     .single()
@@ -40,7 +42,7 @@ async function main() {
   const fixed = article.body_mdx.replaceAll(from, to)
 
   const { error } = await supabase
-    .from('dacha_articles')
+    .from(table)
     .update({ body_mdx: fixed })
     .eq('id', article.id)
 

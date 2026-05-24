@@ -1,5 +1,6 @@
+import Anthropic from '@anthropic-ai/sdk'
 import { createClient } from '@supabase/supabase-js'
-import { generateArticle } from '../lib/agents/content-agent'
+import { generateArticle, factCheckArticle } from '../lib/agents/content-agent'
 import * as fs from 'fs'
 import * as path from 'path'
 
@@ -29,8 +30,17 @@ async function main() {
   const day = jstDate.getUTCDate()
   console.log(`Generating article for ${month}月${day}日...`)
   const article = await generateArticle(now)
-
   console.log(`Generated: "${article.title}" [${article.category}]`)
+
+  const anthropic = new Anthropic()
+  const { body_mdx: checkedBody, changes } = await factCheckArticle(article, anthropic)
+  if (changes.length > 0) {
+    console.log(`Factcheck fixed ${changes.length} issue(s):`)
+    changes.forEach((c, i) => console.log(`  ${i + 1}. ${c}`))
+    article.body_mdx = checkedBody
+  } else {
+    console.log('Factcheck: no issues found')
+  }
 
   const displayTitle = `${month}/${day}｜${article.title}`
 
