@@ -1,4 +1,4 @@
-﻿name: Daily Article Generation
+name: Daily Article Generation
 
 on:
   schedule:
