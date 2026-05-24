@@ -122,6 +122,14 @@ body {
   text-align: center;
 }
 
+/* img */
+.article-body img {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 2rem;
+  display: block;
+}
+
 /* links */
 .article-body a {
   color: #2d6a4f;

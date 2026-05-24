@@ -150,5 +150,7 @@ export async function generateArticle(now: Date): Promise<ArticleOutput> {
   if (!jsonMatch) throw new Error(`Claude returned invalid JSON for topic: ${topic}`)
 
   const parsed = JSON.parse(jsonMatch[0])
-  return { ...parsed, category: phase.category }
+  // MDXパーサーが特殊文字前後の**を認識しないケースを防ぐため<strong>に変換
+  const body = (parsed.body_mdx as string).replace(/\*\*([^*\n]+?)\*\*/g, '<strong>$1</strong>')
+  return { ...parsed, body_mdx: body, category: phase.category }
 }

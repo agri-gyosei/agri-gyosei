@@ -146,5 +146,6 @@ export async function generateDachaArticle(now: Date): Promise<DachaArticleOutpu
   if (!jsonMatch) throw new Error(`Claude returned invalid JSON for topic: ${topic}`)
 
   const parsed = JSON.parse(jsonMatch[0])
-  return { ...parsed, category }
+  const body = (parsed.body_mdx as string).replace(/\*\*([^*\n]+?)\*\*/g, '<strong>$1</strong>')
+  return { ...parsed, body_mdx: body, category }
 }
