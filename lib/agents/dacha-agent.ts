@@ -76,6 +76,39 @@ export interface DachaArticleOutput {
   seo_description: string
 }
 
+export async function factCheckDachaArticle(
+  article: DachaArticleOutput,
+  client: Anthropic
+): Promise<{ body_mdx: string; changes: string[] }> {
+  const factcheckPath = path.join(__dirname, 'prompts', 'dacha-factcheck.txt')
+  const factcheckPrompt = fs.readFileSync(factcheckPath, 'utf-8')
+
+  const response = await client.messages.create({
+    model: 'claude-sonnet-4-6',
+    max_tokens: 4096,
+    system: factcheckPrompt,
+    messages: [
+      {
+        role: 'user',
+        content: `以下の記事をファクトチェックしてください。\n\n【タイトル】${article.title}\n【カテゴリ】${article.category}\n\n【本文】\n${article.body_mdx}`,
+      },
+    ],
+  })
+
+  const text = response.content[0].type === 'text' ? response.content[0].text : ''
+  const jsonMatch = text.match(/\{[\s\S]*\}/)
+  if (!jsonMatch) {
+    console.warn('Factcheck: invalid JSON response, using original')
+    return { body_mdx: article.body_mdx, changes: [] }
+  }
+
+  const parsed = JSON.parse(jsonMatch[0])
+  return {
+    body_mdx: parsed.body_mdx ?? article.body_mdx,
+    changes: parsed.changes ?? [],
+  }
+}
+
 export async function generateDachaArticle(now: Date): Promise<DachaArticleOutput> {
   const client = new Anthropic()
   const dayOfYear = Math.floor(

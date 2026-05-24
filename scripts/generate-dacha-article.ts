@@ -1,5 +1,6 @@
+import Anthropic from '@anthropic-ai/sdk'
 import { createClient } from '@supabase/supabase-js'
-import { generateDachaArticle } from '../lib/agents/dacha-agent'
+import { generateDachaArticle, factCheckDachaArticle } from '../lib/agents/dacha-agent'
 import * as fs from 'fs'
 import * as path from 'path'
 
@@ -29,6 +30,16 @@ async function main() {
 
   const article = await generateDachaArticle(now)
   console.log(`Generated: "${article.title}" [${article.category}]`)
+
+  const anthropic = new Anthropic()
+  const { body_mdx: checkedBody, changes } = await factCheckDachaArticle(article, anthropic)
+  if (changes.length > 0) {
+    console.log(`Factcheck fixed ${changes.length} issue(s):`)
+    changes.forEach((c, i) => console.log(`  ${i + 1}. ${c}`))
+    article.body_mdx = checkedBody
+  } else {
+    console.log('Factcheck: no issues found')
+  }
 
   const { error } = await supabase.from('dacha_articles').insert({
     slug: article.slug,
