@@ -2,8 +2,10 @@ import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { MDXRemote } from 'next-mdx-remote/rsc'
+import remarkGfm from 'remark-gfm'
 import { createClient } from '@/lib/supabase/server'
 import Sidebar from '../components/Sidebar'
+import { articleComponents } from '@/lib/mdx-components'
 
 export const revalidate = 3600
 
@@ -72,7 +74,11 @@ export default async function ArticlePage({ params }: Props) {
               </h1>
 
               <div className="article-body">
-                <MDXRemote source={article.body_mdx} />
+                <MDXRemote
+                  source={article.body_mdx}
+                  options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }}
+                  components={articleComponents}
+                />
               </div>
             </article>
 
