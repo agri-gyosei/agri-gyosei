@@ -13,6 +13,11 @@ type Props = {
   params: Promise<{ slug: string }>
 }
 
+function stripDatePrefix(title: string): string {
+  // "M/D｜タイトル" → "タイトル"（SEO用）
+  return title.includes('｜') ? title.split('｜').slice(1).join('｜') : title
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
   const supabase = await createClient()
@@ -25,11 +30,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!data) return {}
 
+  const seoTitle = stripDatePrefix(data.title)
+
   return {
-    title: `${data.title} | 行政書士試験対策`,
+    title: `${seoTitle} | 行政書士試験対策`,
     description: data.seo_description ?? undefined,
     openGraph: {
-      title: data.title,
+      title: seoTitle,
       description: data.seo_description ?? undefined,
     },
   }
@@ -46,6 +53,26 @@ export default async function ArticlePage({ params }: Props) {
     .single()
 
   if (!article) notFound()
+
+  const [{ data: prevData }, { data: nextData }] = await Promise.all([
+    supabase
+      .from('articles')
+      .select('slug, title')
+      .lt('published_at', article.published_at)
+      .eq('is_member_only', false)
+      .order('published_at', { ascending: false })
+      .limit(1),
+    supabase
+      .from('articles')
+      .select('slug, title')
+      .gt('published_at', article.published_at)
+      .eq('is_member_only', false)
+      .order('published_at', { ascending: true })
+      .limit(1),
+  ])
+
+  const prevArticle = prevData?.[0] ?? null
+  const nextArticle = nextData?.[0] ?? null
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -82,13 +109,40 @@ export default async function ArticlePage({ params }: Props) {
               </div>
             </article>
 
-            <div className="mt-6 text-center">
+            {/* ページャー */}
+            <div className="mt-6 flex flex-wrap justify-center gap-3">
+              {prevArticle ? (
+                <Link
+                  href={`/sikaku/${prevArticle.slug}`}
+                  className="inline-flex items-center border border-green-700 text-green-700 bg-white px-5 py-2.5 rounded-full text-sm hover:bg-green-50 transition-colors"
+                >
+                  ← 前の記事を読む
+                </Link>
+              ) : (
+                <span className="inline-flex items-center border border-gray-200 text-gray-300 px-5 py-2.5 rounded-full text-sm cursor-not-allowed">
+                  ← 前の記事を読む
+                </span>
+              )}
+
               <Link
                 href="/sikaku"
-                className="inline-block bg-green-700 text-white px-6 py-2.5 rounded-full text-sm hover:bg-green-800 transition-colors"
+                className="inline-flex items-center border border-gray-300 text-gray-600 bg-white px-5 py-2.5 rounded-full text-sm hover:bg-gray-50 transition-colors"
               >
-                他の記事を読む
+                一覧ページへ
               </Link>
+
+              {nextArticle ? (
+                <Link
+                  href={`/sikaku/${nextArticle.slug}`}
+                  className="inline-flex items-center bg-green-700 text-white px-5 py-2.5 rounded-full text-sm hover:bg-green-800 transition-colors"
+                >
+                  次の記事を読む →
+                </Link>
+              ) : (
+                <span className="inline-flex items-center bg-gray-100 text-gray-300 px-5 py-2.5 rounded-full text-sm cursor-not-allowed">
+                  次の記事を読む →
+                </span>
+              )}
             </div>
           </main>
 

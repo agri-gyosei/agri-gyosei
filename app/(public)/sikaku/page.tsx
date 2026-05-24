@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export const revalidate = 3600
 
 type Props = {
-  searchParams: Promise<{ category?: string }>
+  searchParams: Promise<{ category?: string; month?: string }>
 }
 
 type Article = {
@@ -23,8 +23,13 @@ type Article = {
   published_at: string
 }
 
+function formatMonthLabel(ym: string): string {
+  const [year, month] = ym.split('-')
+  return `${year}年${parseInt(month)}月`
+}
+
 export default async function SikakuPage({ searchParams }: Props) {
-  const { category } = await searchParams
+  const { category, month } = await searchParams
   let articles: Article[] = []
 
   try {
@@ -40,11 +45,29 @@ export default async function SikakuPage({ searchParams }: Props) {
       query = query.eq('category', category)
     }
 
+    if (month) {
+      const [yearStr, monthStr] = month.split('-')
+      const year = parseInt(yearStr)
+      const m = parseInt(monthStr)
+      // JST月境界をUTCに変換（JST = UTC+9）
+      const startUTC = new Date(Date.UTC(year, m - 1, 1) - 9 * 60 * 60 * 1000)
+      const endUTC = new Date(Date.UTC(year, m, 1) - 9 * 60 * 60 * 1000)
+      query = query
+        .gte('published_at', startUTC.toISOString())
+        .lt('published_at', endUTC.toISOString())
+    }
+
     const { data } = await query
     articles = data ?? []
   } catch {
     // Supabase not configured yet
   }
+
+  const activeFilter = category
+    ? { label: category, clearHref: '/sikaku' }
+    : month
+    ? { label: formatMonthLabel(month), clearHref: '/sikaku' }
+    : null
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -62,12 +85,12 @@ export default async function SikakuPage({ searchParams }: Props) {
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_272px] gap-8">
           {/* 記事一覧 */}
           <main>
-            {category && (
+            {activeFilter && (
               <div className="flex items-center gap-2 mb-4">
                 <span className="text-sm bg-green-100 text-green-700 px-3 py-1 rounded-full font-medium">
-                  {category}
+                  {activeFilter.label}
                 </span>
-                <Link href="/sikaku" className="text-xs text-gray-400 hover:underline">
+                <Link href={activeFilter.clearHref} className="text-xs text-gray-400 hover:underline">
                   ✕ 絞り込みを解除
                 </Link>
               </div>
@@ -76,9 +99,9 @@ export default async function SikakuPage({ searchParams }: Props) {
             {articles.length === 0 ? (
               <div className="text-center py-20 text-gray-400">
                 <p className="text-lg">
-                  {category ? 'このカテゴリーの記事はまだありません。' : '記事を準備中です。しばらくお待ちください。'}
+                  {activeFilter ? 'この期間・カテゴリーの記事はまだありません。' : '記事を準備中です。しばらくお待ちください。'}
                 </p>
-                {category && (
+                {activeFilter && (
                   <Link href="/sikaku" className="mt-4 inline-block text-sm text-green-600 hover:underline">
                     すべての記事を見る
                   </Link>
@@ -117,14 +140,14 @@ export default async function SikakuPage({ searchParams }: Props) {
           {/* サイドバー（PC）*/}
           <aside className="hidden lg:block">
             <div className="sticky top-6">
-              <Sidebar currentCategory={category} />
+              <Sidebar currentCategory={category} currentMonth={month} />
             </div>
           </aside>
         </div>
 
         {/* サイドバー（モバイル）*/}
         <div className="lg:hidden mt-8">
-          <Sidebar currentCategory={category} />
+          <Sidebar currentCategory={category} currentMonth={month} />
         </div>
       </div>
     </div>
