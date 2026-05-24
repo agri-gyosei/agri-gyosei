@@ -11,13 +11,11 @@ async function main() {
 
   const supabase = createClient(supabaseUrl, serviceRoleKey)
 
-  // Use day-of-year as index to rotate categories
   const now = new Date()
-  const start = new Date(now.getFullYear(), 0, 0)
-  const dayIndex = Math.floor((now.getTime() - start.getTime()) / (1000 * 60 * 60 * 24))
-
-  console.log(`Generating article for day ${dayIndex}...`)
-  const article = await generateArticle(dayIndex)
+  const month = now.getMonth() + 1
+  const day = now.getDate()
+  console.log(`Generating article for ${month}月${day}日...`)
+  const article = await generateArticle(now)
 
   console.log(`Generated: "${article.title}" [${article.category}]`)
 
