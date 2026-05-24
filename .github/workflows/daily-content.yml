@@ -1,9 +1,9 @@
-name: Daily Article Generation
+﻿name: Daily Article Generation
 
 on:
   schedule:
-    - cron: '0 21 * * *'  # 6:00 JST (UTC+9)
-  workflow_dispatch:       # Manual trigger for testing
+    - cron: '0 21 * * *'
+  workflow_dispatch:
 
 jobs:
   generate:
