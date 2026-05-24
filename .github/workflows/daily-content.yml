@@ -1,0 +1,26 @@
+name: Daily Article Generation
+
+on:
+  schedule:
+    - cron: '0 21 * * *'  # 6:00 JST (UTC+9)
+  workflow_dispatch:       # Manual trigger for testing
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - run: npm ci
+
+      - name: Generate and publish article
+        run: npx tsx scripts/generate-article.ts
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
