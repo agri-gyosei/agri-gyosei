@@ -16,8 +16,15 @@ export async function GET(request: NextRequest) {
     const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY!
     const supabase = createClient(supabaseUrl, serviceRoleKey)
 
-    const now = new Date()
-    const jstDate = new Date(now.getTime() + 9 * 60 * 60 * 1000)
+    const jstDateParam = request.nextUrl.searchParams.get('jst_date')
+    let jstDate: Date
+    if (jstDateParam) {
+      const [m, d] = jstDateParam.split('/').map(Number)
+      const y = new Date().getUTCFullYear()
+      jstDate = new Date(Date.UTC(y, m - 1, d, 0, 0, 0))
+    } else {
+      jstDate = new Date(Date.now() + 9 * 60 * 60 * 1000)
+    }
 
     const article = await generateDachaArticle(jstDate)
 

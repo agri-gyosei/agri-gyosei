@@ -9,9 +9,12 @@ jobs:
   generate:
     runs-on: ubuntu-latest
     steps:
+      - name: JST日付を取得
+        run: echo "JST_DATE=$(TZ=Asia/Tokyo date +%-m/%-d)" >> $GITHUB_ENV
+
       - name: 記事生成APIを呼び出す
         run: |
           curl -v -X GET \
-            "https://agri-gyosei.com/api/cron/generate-dacha-article" \
+            "https://agri-gyosei.com/api/cron/generate-dacha-article?jst_date=${{ env.JST_DATE }}" \
             -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}" \
             --max-time 300
