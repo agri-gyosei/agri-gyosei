@@ -126,9 +126,6 @@ export default async function SikakuPage({ searchParams }: Props) {
                       <span className="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full">
                         {article.category}
                       </span>
-                      <time className="text-xs text-gray-400">
-                        {new Date(article.published_at).toLocaleDateString('ja-JP')}
-                      </time>
                     </div>
                     <h2 className="font-semibold text-gray-800 text-lg leading-snug">
                       {article.title}

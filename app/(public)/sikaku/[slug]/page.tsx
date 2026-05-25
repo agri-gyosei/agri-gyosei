@@ -104,9 +104,6 @@ export default async function ArticlePage({ params }: Props) {
                 <span className="text-xs bg-green-100 text-green-700 px-3 py-1 rounded-full font-medium">
                   {article.category}
                 </span>
-                <time className="text-xs text-gray-400">
-                  {new Date(article.published_at).toLocaleDateString('ja-JP')}
-                </time>
               </div>
 
               <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-8 leading-snug">
