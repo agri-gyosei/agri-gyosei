@@ -104,7 +104,7 @@ export default async function DachaPage({ searchParams }: Props) {
                         {article.category}
                       </span>
                       <time className="text-xs text-gray-400">
-                        {new Date(article.published_at).toLocaleDateString('ja-JP')}
+                        {new Date(article.published_at).toLocaleDateString('ja-JP', { timeZone: 'Asia/Tokyo' })}
                       </time>
                     </div>
                     <h2 className="font-semibold text-lg leading-snug" style={{ color: '#3D2B1F' }}>
