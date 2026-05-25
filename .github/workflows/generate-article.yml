@@ -11,7 +11,8 @@ jobs:
     steps:
       - name: 記事生成APIを呼び出す
         run: |
-          curl -f -X GET \
+          curl -v -X GET \
             "https://agri-gyosei.com/api/cron/generate-article" \
             -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}" \
             --max-time 300
+          echo "HTTP Status: $?"
