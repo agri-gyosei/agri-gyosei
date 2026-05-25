@@ -5,6 +5,7 @@ import { MDXRemote } from 'next-mdx-remote/rsc'
 import remarkGfm from 'remark-gfm'
 import { createClient } from '@/lib/supabase/server'
 import Sidebar from '../components/Sidebar'
+import Footer from '../components/Footer'
 import { articleComponents } from '@/lib/mdx-components'
 
 export const revalidate = 3600
@@ -68,6 +69,18 @@ export default async function DachaArticlePage({ params }: Props) {
   const nextArticle = nextData?.[0] ?? null
 
   return (
+    <>
+    <header className="text-white py-4 px-6" style={{ background: 'linear-gradient(135deg, #C4714A 0%, #D4937A 100%)' }}>
+      <div className="max-w-5xl mx-auto flex flex-wrap items-baseline gap-2">
+        <a href="https://agri-gyosei.com" className="text-xs tracking-widest hover:text-white transition-colors shrink-0" style={{ color: 'rgba(255,255,255,0.7)' }}>
+          agri-gyosei.com
+        </a>
+        <span className="text-xs" style={{ color: 'rgba(255,255,255,0.4)' }}>/</span>
+        <Link href="/dacha" className="text-base font-bold text-white hover:opacity-90 transition-opacity">
+          ダーチャという生き方
+        </Link>
+      </div>
+    </header>
     <div className="min-h-screen" style={{ background: '#FAF7F2' }}>
       <div className="max-w-5xl mx-auto px-4 sm:px-6 py-8">
         <div className="mb-5">
@@ -151,5 +164,7 @@ export default async function DachaArticlePage({ params }: Props) {
         </div>
       </div>
     </div>
+    <Footer />
+    </>
   )
 }

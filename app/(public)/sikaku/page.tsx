@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase/server'
 import Sidebar from './components/Sidebar'
+import Footer from './components/Footer'
 
 export const metadata: Metadata = {
   title: '行政書士試験の勉強法｜6ヶ月間集中学習',
@@ -70,14 +71,20 @@ export default async function SikakuPage({ searchParams }: Props) {
     : null
 
   return (
+    <>
     <div className="min-h-screen bg-gray-50">
       <header className="bg-green-800 text-white py-10 px-6">
         <div className="max-w-5xl mx-auto">
-          <p className="text-green-300 text-sm mb-2 tracking-widest">agri-gyosei.com</p>
-          <h1 className="text-3xl font-bold mb-2">行政書士試験の勉強法｜6ヶ月間集中学習</h1>
-          <p className="text-green-200 text-sm">
-            毎日1記事更新。兼業農家・社会人受験生のための合格ガイド。
+          <p className="text-green-300 text-sm mb-2 tracking-widest">
+            <a href="https://agri-gyosei.com" className="hover:text-green-100 transition-colors">
+              agri-gyosei.com
+            </a>
           </p>
+          <h1 className="text-3xl font-bold">
+            <Link href="/sikaku" className="hover:opacity-90 transition-opacity">
+              行政書士試験の勉強法｜6ヶ月間集中学習
+            </Link>
+          </h1>
         </div>
       </header>
 
@@ -151,5 +158,7 @@ export default async function SikakuPage({ searchParams }: Props) {
         </div>
       </div>
     </div>
+    <Footer />
+    </>
   )
 }

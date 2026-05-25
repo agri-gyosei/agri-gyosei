@@ -109,11 +109,10 @@ export async function factCheckDachaArticle(
   }
 }
 
-export async function generateDachaArticle(now: Date): Promise<DachaArticleOutput> {
+export async function generateDachaArticle(jstDate: Date): Promise<DachaArticleOutput> {
   const client = new Anthropic()
-  const dayOfYear = Math.floor(
-    (now.getTime() - new Date(now.getFullYear(), 0, 0).getTime()) / (1000 * 60 * 60 * 24)
-  )
+  const startOfYear = Date.UTC(jstDate.getUTCFullYear(), 0, 1)
+  const dayOfYear = Math.floor((jstDate.getTime() - startOfYear) / (1000 * 60 * 60 * 24)) + 1
 
   const flatTopics = GENRES.flatMap((g) =>
     g.topics.map((t) => ({ category: g.category, topic: t }))

@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase/server'
 import Sidebar from './components/Sidebar'
+import Footer from './components/Footer'
 
 export const metadata: Metadata = {
   title: 'ダーチャという生き方｜農地と食料安全保障',
@@ -47,14 +48,20 @@ export default async function DachaPage({ searchParams }: Props) {
   }
 
   return (
+    <>
     <div className="min-h-screen" style={{ background: '#FAF7F2' }}>
       <header className="text-white py-10 px-6" style={{ background: 'linear-gradient(135deg, #C4714A 0%, #D4937A 50%, #E8B4B8 100%)' }}>
         <div className="max-w-5xl mx-auto">
-          <p className="text-white/70 text-sm mb-2 tracking-widest">agri-gyosei.com</p>
-          <h1 className="text-3xl font-bold mb-2">ダーチャという生き方</h1>
-          <p className="text-white/80 text-sm">
-            農地と食料安全保障。日本の国土と家族の食を守るために。
+          <p className="text-sm mb-2 tracking-widest" style={{ color: 'rgba(255,255,255,0.7)' }}>
+            <a href="https://agri-gyosei.com" className="hover:text-white transition-colors">
+              agri-gyosei.com
+            </a>
           </p>
+          <h1 className="text-3xl font-bold">
+            <Link href="/dacha" className="hover:opacity-90 transition-opacity">
+              ダーチャという生き方
+            </Link>
+          </h1>
         </div>
       </header>
 
@@ -126,5 +133,7 @@ export default async function DachaPage({ searchParams }: Props) {
         </div>
       </div>
     </div>
+    <Footer />
+    </>
   )
 }

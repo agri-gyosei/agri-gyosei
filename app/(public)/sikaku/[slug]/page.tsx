@@ -5,6 +5,7 @@ import { MDXRemote } from 'next-mdx-remote/rsc'
 import remarkGfm from 'remark-gfm'
 import { createClient } from '@/lib/supabase/server'
 import Sidebar from '../components/Sidebar'
+import Footer from '../components/Footer'
 import { articleComponents } from '@/lib/mdx-components'
 
 export const revalidate = 3600
@@ -75,6 +76,18 @@ export default async function ArticlePage({ params }: Props) {
   const nextArticle = nextData?.[0] ?? null
 
   return (
+    <>
+    <header className="bg-green-800 text-white py-4 px-6">
+      <div className="max-w-5xl mx-auto flex flex-wrap items-baseline gap-2">
+        <a href="https://agri-gyosei.com" className="text-green-300 text-xs tracking-widest hover:text-green-100 transition-colors shrink-0">
+          agri-gyosei.com
+        </a>
+        <span className="text-green-600 text-xs">/</span>
+        <Link href="/sikaku" className="text-base font-bold text-white hover:opacity-90 transition-opacity">
+          行政書士試験の勉強法｜6ヶ月間集中学習
+        </Link>
+      </div>
+    </header>
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 py-8">
         <div className="mb-5">
@@ -160,5 +173,7 @@ export default async function ArticlePage({ params }: Props) {
         </div>
       </div>
     </div>
+    <Footer />
+    </>
   )
 }

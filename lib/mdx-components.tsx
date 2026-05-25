@@ -2,6 +2,7 @@ type TableProps = React.ComponentProps<'table'>
 type UlProps = React.ComponentProps<'ul'>
 type OlProps = React.ComponentProps<'ol'>
 type AProps = React.ComponentProps<'a'>
+type ImgProps = React.ComponentProps<'img'>
 
 function ArticleTable({ children, ...props }: TableProps) {
   return (
@@ -45,9 +46,15 @@ function ArticleLink({ href, children, ...props }: AProps) {
   )
 }
 
+function ArticleImg({ src, alt, ...props }: ImgProps) {
+  // eslint-disable-next-line @next/next/no-img-element
+  return <img src={src} alt={alt ?? ''} className="w-full rounded-lg mb-6 object-cover max-h-80" {...props} />
+}
+
 export const articleComponents = {
   table: ArticleTable,
   ul: ArticleUl,
   ol: ArticleOl,
   a: ArticleLink,
+  img: ArticleImg,
 }

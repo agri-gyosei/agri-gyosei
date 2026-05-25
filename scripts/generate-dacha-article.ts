@@ -28,7 +28,7 @@ async function main() {
   const day = jstDate.getUTCDate()
   console.log(`Generating dacha article for ${month}月${day}日...`)
 
-  const article = await generateDachaArticle(now)
+  const article = await generateDachaArticle(jstDate)
   console.log(`Generated: "${article.title}" [${article.category}]`)
 
   const anthropic = new Anthropic()
