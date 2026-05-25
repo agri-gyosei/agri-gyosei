@@ -22,6 +22,7 @@ export async function GET(request: NextRequest) {
     if (countError) throw countError
     const articleIndex = count ?? 0
 
+    const now = new Date()
     const jstDateParam = request.nextUrl.searchParams.get('jst_date')
     let month: number, day: number
     if (jstDateParam) {
@@ -29,7 +30,7 @@ export async function GET(request: NextRequest) {
       month = m
       day = d
     } else {
-      const jstDate = new Date(Date.now() + 9 * 60 * 60 * 1000)
+      const jstDate = new Date(now.getTime() + 9 * 60 * 60 * 1000)
       month = jstDate.getUTCMonth() + 1
       day = jstDate.getUTCDate()
     }
