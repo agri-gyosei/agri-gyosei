@@ -112,6 +112,10 @@ export default async function DachaArticlePage({ params }: Props) {
                   components={articleComponents}
                 />
               </div>
+
+              <div className="mt-8 pt-6 border-t text-xs text-gray-400 leading-relaxed" style={{ borderColor: '#F0D8D0' }}>
+                本記事は一般的な情報提供を目的としており、個別の法的アドバイスではありません。詳細は農業委員会または行政書士にご相談ください。
+              </div>
             </article>
 
             <div className="mt-6 flex flex-wrap justify-center gap-3">
