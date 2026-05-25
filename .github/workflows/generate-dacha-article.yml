@@ -8,13 +8,23 @@ on:
 jobs:
   generate:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - run: npm ci
+
       - name: JST日付を取得
         run: echo "JST_DATE=$(TZ=Asia/Tokyo date +%-m/%-d)" >> $GITHUB_ENV
 
-      - name: 記事生成APIを呼び出す
-        run: |
-          curl -v -X GET \
-            "https://agri-gyosei.com/api/cron/generate-dacha-article?jst_date=${{ env.JST_DATE }}" \
-            -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}" \
-            --max-time 300
+      - name: 記事を生成してSupabaseに保存
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: npx tsx scripts/run-generate-dacha-article.ts "${{ env.JST_DATE }}"
