@@ -1,0 +1,17 @@
+name: ダーチャ記事の自動生成
+
+on:
+  schedule:
+    - cron: '30 20 * * *'  # 毎日JST 05:30 (UTC 20:30)
+  workflow_dispatch:        # 手動実行も可能
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 記事生成APIを呼び出す
+        run: |
+          curl -f -X GET \
+            "https://agri-gyosei.com/api/cron/generate-dacha-article" \
+            -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}" \
+            --max-time 300
