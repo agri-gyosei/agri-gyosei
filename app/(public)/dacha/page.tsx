@@ -76,8 +76,8 @@ export default async function DachaPage({ searchParams }: Props) {
         {/* ── ヒーローセクション ── */}
         <section style={{ background: 'linear-gradient(160deg, #C4714A 0%, #D4856E 45%, #E8B4B8 100%)' }}>
           {/* モバイル：コンパクト / デスクトップ：余裕あり */}
-          <div className="max-w-5xl mx-auto px-6 py-8 sm:py-28 text-center">
-            <p className="text-xs tracking-widest uppercase mb-4 sm:mb-8" style={{ color: 'rgba(255,255,255,0.6)' }}>
+          <div className="max-w-5xl mx-auto px-6 py-14 text-center">
+            <p className="text-xs tracking-widest uppercase mb-4" style={{ color: 'rgba(255,255,255,0.6)' }}>
               <a href="https://agri-gyosei.com" className="hover:text-white transition-colors">
                 agri-gyosei.com
               </a>
@@ -113,7 +113,7 @@ export default async function DachaPage({ searchParams }: Props) {
                 className="text-sm px-4 py-1.5 rounded-full font-medium transition-colors"
                 style={!category
                   ? { background: '#C4714A', color: '#fff' }
-                  : { background: '#F5E6E8', color: '#C4714A' }
+                  : { background: '#fff', color: '#C4714A', border: '1px solid #C4714A' }
                 }
               >
                 すべて
@@ -191,13 +191,6 @@ export default async function DachaPage({ searchParams }: Props) {
                             </span>
                           </div>
                         )}
-                        {/* FEATURED バッジ */}
-                        <span
-                          className="absolute top-3 left-3 sm:top-4 sm:left-4 z-10 text-xs font-bold tracking-widest uppercase px-3 py-1 rounded-full"
-                          style={{ background: 'rgba(255,255,255,0.92)', color: '#C4714A' }}
-                        >
-                          FEATURED
-                        </span>
                       </div>
 
                       {/* 下（モバイル）/ 右（デスクトップ）：テキスト */}
