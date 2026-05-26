@@ -3,7 +3,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { createClient } from '@/lib/supabase/server'
 import Footer from './components/Footer'
-import { DACHA_EYECATCH_SLUGS } from '@/lib/dacha-eyecatch'
+import { DACHA_EYECATCH_SLUGS, DACHA_CARD_IMAGE_SLUGS } from '@/lib/dacha-eyecatch'
 
 export const metadata: Metadata = {
   title: 'ダーチャという生き方｜農地と食料安全保障',
@@ -98,14 +98,13 @@ export default async function DachaPage({ searchParams }: Props) {
 
         {/* ── カテゴリーフィルター（横スクロールタグ） ── */}
         <div
-          className="sticky top-0 z-20 border-b"
-          style={{ background: '#FAF7F2', borderColor: '#F0D8D0' }}
+          className="sticky top-0 z-20 border-b scrollbar-none overflow-x-auto"
+          style={{ background: '#FAF7F2', borderColor: '#F0D8D0', scrollbarWidth: 'none' } as any}
         >
-          <div className="max-w-5xl mx-auto px-4 sm:px-6">
+          <div className="max-w-5xl mx-auto">
             <div
-              className="scrollbar-none flex items-center gap-2 overflow-x-auto py-3"
-              // eslint-disable-next-line @typescript-eslint/no-explicit-any
-              style={{ scrollbarWidth: 'none' } as any}
+              className="flex items-center gap-2 py-3 px-4 sm:px-6"
+              style={{ width: 'max-content', minWidth: '100%' }}
             >
               <Link
                 href="/dacha"
@@ -166,7 +165,7 @@ export default async function DachaPage({ searchParams }: Props) {
 
                       {/* 左：画像 or カラーブロック */}
                       <div className="sm:w-[48%] relative" style={{ minHeight: '220px' }}>
-                        {DACHA_EYECATCH_SLUGS.has(featuredArticle.slug) ? (
+                        {DACHA_CARD_IMAGE_SLUGS.has(featuredArticle.slug) ? (
                           <Image
                             src={`/dacha/images/${featuredArticle.slug}.png`}
                             alt={featuredArticle.title}
@@ -236,7 +235,7 @@ export default async function DachaPage({ searchParams }: Props) {
               {gridArticles.length > 0 && (
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
                   {gridArticles.map((article) => {
-                    const hasEyecatch = DACHA_EYECATCH_SLUGS.has(article.slug)
+                    const hasEyecatch = DACHA_CARD_IMAGE_SLUGS.has(article.slug)
                     return (
                       <Link
                         key={article.id}
