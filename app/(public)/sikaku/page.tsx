@@ -160,33 +160,28 @@ export default async function SikakuPage({ searchParams }: Props) {
           className="sticky top-0 z-20 border-b"
           style={{ background: '#F8F7F4', borderColor: '#E4E0D8' }}
         >
-          <div className="max-w-4xl mx-auto px-4 sm:px-6">
-            <div
-              className="overflow-x-auto scrollbar-none"
-              style={{ scrollbarWidth: 'none' } as React.CSSProperties}
-            >
-              <div className="flex gap-2 py-3 w-max min-w-full">
-                {TAGS.map((tag) => {
-                  const isActive = tag === 'すべて' ? !category : category === tag
-                  return (
-                    <Link
-                      key={tag}
-                      href={tag === 'すべて' ? '/sikaku' : `/sikaku?category=${encodeURIComponent(tag)}`}
-                      className="flex-shrink-0 font-medium transition-colors whitespace-nowrap"
-                      style={{
-                        fontSize: '12px',
-                        padding: '4px 12px',
-                        borderRadius: '20px',
-                        border: isActive ? '0.5px solid #1A2744' : '0.5px solid #ccc',
-                        background: isActive ? '#1A2744' : '#fff',
-                        color: isActive ? '#B8D0F5' : '#555',
-                      }}
-                    >
-                      {tag}
-                    </Link>
-                  )
-                })}
-              </div>
+          <div className="max-w-4xl mx-auto" style={{ padding: '12px 16px' }}>
+            <div className="flex flex-wrap gap-2">
+              {TAGS.map((tag) => {
+                const isActive = tag === 'すべて' ? !category : category === tag
+                return (
+                  <Link
+                    key={tag}
+                    href={tag === 'すべて' ? '/sikaku' : `/sikaku?category=${encodeURIComponent(tag)}`}
+                    className="font-medium transition-colors"
+                    style={{
+                      fontSize: '12px',
+                      padding: '4px 12px',
+                      borderRadius: '20px',
+                      border: isActive ? '0.5px solid #1A2744' : '0.5px solid #ccc',
+                      background: isActive ? '#1A2744' : '#fff',
+                      color: isActive ? '#B8D0F5' : '#555',
+                    }}
+                  >
+                    {tag}
+                  </Link>
+                )
+              })}
             </div>
           </div>
         </div>
