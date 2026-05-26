@@ -99,21 +99,18 @@ export default async function DachaPage({ searchParams }: Props) {
           </div>
         </section>
 
-        {/* ── カテゴリーフィルター（横スクロールタグ） ──
-            sticky と overflow-x:auto を同じ要素に与えると競合する。
-            sticky は外側 div、overflow-x:auto は内側 div に分離するのが正解。 */}
+        {/* ── カテゴリーフィルター（折り返しタグ） ──
+            横スクロールはstickyと競合しやすいため flex-wrap で複数行折り返しに変更。
+            モバイルでは2行、デスクトップでは1行に収まる。 */}
         <div
           className="sticky top-0 z-20 border-b"
           style={{ background: '#FAF7F2', borderColor: '#F0D8D0' }}
         >
-          <div
-            className="overflow-x-auto scrollbar-none"
-            style={{ scrollbarWidth: 'none' } as any}
-          >
-            <div className="flex items-center gap-2 py-3 px-4 sm:px-6 w-max min-w-full">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 py-3">
+            <div className="flex flex-wrap gap-2">
               <Link
                 href="/dacha"
-                className="flex-shrink-0 text-sm px-4 py-1.5 rounded-full font-medium transition-colors whitespace-nowrap"
+                className="text-sm px-4 py-1.5 rounded-full font-medium transition-colors"
                 style={!category
                   ? { background: '#C4714A', color: '#fff' }
                   : { background: '#F5E6E8', color: '#C4714A' }
@@ -125,7 +122,7 @@ export default async function DachaPage({ searchParams }: Props) {
                 <Link
                   key={genre}
                   href={`/dacha?category=${encodeURIComponent(genre)}`}
-                  className="flex-shrink-0 text-sm px-4 py-1.5 rounded-full font-medium transition-colors whitespace-nowrap"
+                  className="text-sm px-4 py-1.5 rounded-full font-medium transition-colors"
                   style={category === genre
                     ? { background: '#C4714A', color: '#fff' }
                     : { background: '#F5E6E8', color: '#C4714A' }
@@ -134,8 +131,6 @@ export default async function DachaPage({ searchParams }: Props) {
                   {genre}
                 </Link>
               ))}
-              {/* 右端の余白スペーサー */}
-              <span className="flex-shrink-0 w-4 sm:w-6" aria-hidden="true" />
             </div>
           </div>
         </div>
