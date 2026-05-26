@@ -44,13 +44,6 @@ export default function Home() {
           兼業農家の方々を全力でサポートします。
         </p>
 
-        <a
-          href="mailto:agri.gyosei@gmail.com"
-          className="inline-block border border-green-400 text-green-200 text-sm px-6 py-2.5 rounded-full hover:bg-green-700 transition-colors duration-200 mb-10"
-        >
-          お問い合わせ: agri.gyosei@gmail.com
-        </a>
-
         <p className="text-green-400 text-xs tracking-[0.35em]">
           agri-gyosei.com
         </p>
