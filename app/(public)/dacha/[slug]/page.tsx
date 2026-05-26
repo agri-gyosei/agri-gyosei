@@ -2,12 +2,11 @@ import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
-import * as fs from 'fs'
-import * as path from 'path'
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import remarkGfm from 'remark-gfm'
 import rehypeExternalLinks from 'rehype-external-links'
 import { createClient } from '@/lib/supabase/server'
+import { DACHA_EYECATCH_SLUGS } from '@/lib/dacha-eyecatch'
 import Sidebar from '../components/Sidebar'
 import Footer from '../components/Footer'
 import { articleComponents } from '@/lib/mdx-components'
@@ -52,8 +51,7 @@ export default async function DachaArticlePage({ params }: Props) {
 
   if (!article) notFound()
 
-  const eyecatchPath = path.join(process.cwd(), 'public', 'dacha', 'images', `${slug}.png`)
-  const hasEyecatch = fs.existsSync(eyecatchPath)
+  const hasEyecatch = DACHA_EYECATCH_SLUGS.has(slug)
 
   const [{ data: prevData }, { data: nextData }] = await Promise.all([
     supabase
