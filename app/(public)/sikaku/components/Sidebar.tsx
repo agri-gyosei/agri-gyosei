@@ -1,47 +1,52 @@
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase/server'
 
+type CategoryItem = {
+  label: string
+  filter: string
+}
+
 const CATEGORIES = [
   {
     icon: '📅',
     label: '学習ロードマップ（月別）',
     items: [
-      '5・6月：行政法・憲法',
-      '7月：民法',
-      '8月：商法・会社法／基礎知識',
-      '9～11月：過去問演習',
-    ],
+      { label: '5・6月：行政法・憲法', filter: '行政法・憲法' },
+      { label: '7月：民法', filter: '民法' },
+      { label: '8月：商法・会社法／基礎知識', filter: '商法・会社法' },
+      { label: '9～11月：過去問演習', filter: '過去問演習' },
+    ] as CategoryItem[],
   },
   {
     icon: '📚',
     label: '科目別',
     items: [
-      '行政法（最重要・最初に2周）',
-      '民法（難所・リーガルマインドで攻略）',
-      '憲法',
-      '商法・会社法（基本だけでOK）',
-      '基礎知識／一般知識（足切り注意）',
-      '行政書士法・個人情報保護法',
-      '文章理解',
-    ],
+      { label: '行政法（最重要・最初に2周）', filter: '行政法・憲法' },
+      { label: '民法（難所・リーガルマインドで攻略）', filter: '民法' },
+      { label: '憲法', filter: '行政法・憲法' },
+      { label: '商法・会社法（基本だけでOK）', filter: '商法・会社法' },
+      { label: '基礎知識／一般知識（足切り注意）', filter: '基礎知識・足切り対策' },
+      { label: '行政書士法・個人情報保護法', filter: '基礎知識・足切り対策' },
+      { label: '文章理解', filter: '基礎知識・足切り対策' },
+    ] as CategoryItem[],
   },
   {
     icon: '🎯',
     label: '合格戦略',
     items: [
-      '満点ではなく合格点を狙う勉強法',
-      '足切り対策（14問中6問正解が必須）',
-      '直前期の苦手科目の復習法',
-      '過去問の使い方',
-    ],
+      { label: '満点ではなく合格点を狙う勉強法', filter: '過去問演習' },
+      { label: '足切り対策（14問中6問正解が必須）', filter: '基礎知識・足切り対策' },
+      { label: '直前期の苦手科目の復習法', filter: '過去問演習' },
+      { label: '過去問の使い方', filter: '過去問演習' },
+    ] as CategoryItem[],
   },
   {
     icon: '📝',
     label: '頻出条文・判例解説',
     items: [
-      '行政書士試験の頻出条文解説（民法・物権）',
-      '行政書士試験の頻出条文解説（民法・債権）',
-    ],
+      { label: '行政書士試験の頻出条文解説（民法・物権）', filter: '民法' },
+      { label: '行政書士試験の頻出条文解説（民法・債権）', filter: '民法' },
+    ] as CategoryItem[],
   },
 ]
 
@@ -101,18 +106,18 @@ export default async function Sidebar({ currentCategory, currentMonth }: Props) 
               </p>
               <ul className="space-y-1">
                 {group.items.map((item) => {
-                  const isActive = currentCategory === item
+                  const isActive = currentCategory === item.filter
                   return (
-                    <li key={item}>
+                    <li key={item.label}>
                       <Link
-                        href={`/sikaku?category=${encodeURIComponent(item)}`}
+                        href={`/sikaku?category=${encodeURIComponent(item.filter)}`}
                         className={`block text-sm px-2 py-1 rounded transition-colors ${
                           isActive
                             ? 'bg-green-100 text-green-800 font-medium'
                             : 'text-gray-600 hover:text-green-700 hover:bg-green-50'
                         }`}
                       >
-                        {item}
+                        {item.label}
                       </Link>
                     </li>
                   )
