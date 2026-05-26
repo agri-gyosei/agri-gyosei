@@ -28,10 +28,11 @@ const DEFAULT_BORDER = '#4A7ACA'
 const TAGS = ['すべて', '行政法', '民法', '憲法', '商法', '合格戦略', '頻出条文']
 
 const ROADMAP = [
-  { period: '5・6月', subject: '行政法・憲法',  color: '#4A7ACA', desc: '試験の配点No.1。まず行政法を固める。' },
-  { period: '7月',    subject: '民法',          color: '#3B9E6A', desc: '身近な法律で得点源に。条文と判例を整理。' },
-  { period: '8月',    subject: '商法・基礎知識', color: '#9B59B6', desc: '商法は条文中心。基礎知識は得点を守る。' },
-  { period: '9〜11月', subject: '過去問演習',   color: '#E67E22', desc: '本試験形式で弱点を洗い出し、確実に得点。' },
+  { period: '5・6月', subject: '行政法・憲法',     color: '#4A7ACA', desc: '試験の配点No.1。まず行政法を固める。',           href: '/sikaku?category=%E8%A1%8C%E6%94%BF%E6%B3%95%E3%83%BB%E6%86%B2%E6%B3%95' },
+  { period: '7月',    subject: '民法',             color: '#3B9E6A', desc: '身近な法律で得点源に。条文と判例を整理。',       href: '/sikaku?category=%E6%B0%91%E6%B3%95' },
+  { period: '8月',    subject: '商法・会社法',      color: '#9B59B6', desc: '商法は条文中心。条文の読み込みで確実に得点。',   href: '/sikaku?category=%E5%95%86%E6%B3%95%E3%83%BB%E4%BC%9A%E7%A4%BE%E6%B3%95' },
+  { period: '8月',    subject: '基礎知識・足切り対策', color: '#9B59B6', desc: '足切りを回避して合格を確実にする。',         href: '/sikaku?category=%E5%9F%BA%E7%A4%8E%E7%9F%A5%E8%AD%98%E3%83%BB%E8%B6%B3%E5%88%87%E3%82%8A%E5%AF%BE%E7%AD%96' },
+  { period: '9〜11月', subject: '過去問演習',      color: '#E67E22', desc: '本試験形式で弱点を洗い出し、確実に得点。',       href: '/sikaku?category=%E9%81%8E%E5%8E%BB%E5%95%8F%E6%BC%94%E7%BF%92' },
 ]
 
 function getPhase(month: number): { phase: number; label: string } {
@@ -204,14 +205,16 @@ export default async function SikakuPage({ searchParams }: Props) {
               </p>
               <div className="grid grid-cols-2 gap-3">
                 {ROADMAP.map((item) => (
-                  <div
-                    key={item.period}
-                    className="p-4"
+                  <Link
+                    key={item.subject}
+                    href={item.href}
+                    className="p-4 block transition-shadow hover:shadow-md"
                     style={{
                       background: '#fff',
                       border: '1px solid #E8E4DC',
                       borderLeft: `3px solid ${item.color}`,
                       borderRadius: '10px',
+                      cursor: 'pointer',
                     }}
                   >
                     <div
@@ -232,7 +235,7 @@ export default async function SikakuPage({ searchParams }: Props) {
                     >
                       {item.desc}
                     </p>
-                  </div>
+                  </Link>
                 ))}
               </div>
             </div>
