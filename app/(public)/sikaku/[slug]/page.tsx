@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import remarkGfm from 'remark-gfm'
+import rehypeExternalLinks from 'rehype-external-links'
 import { createClient } from '@/lib/supabase/server'
 import Sidebar from '../components/Sidebar'
 import Footer from '../components/Footer'
@@ -113,7 +114,7 @@ export default async function ArticlePage({ params }: Props) {
               <div className="article-body">
                 <MDXRemote
                   source={article.body_mdx}
-                  options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }}
+                  options={{ mdxOptions: { remarkPlugins: [remarkGfm], rehypePlugins: [[rehypeExternalLinks, { target: '_blank', rel: ['noopener', 'noreferrer'] }]] } }}
                   components={articleComponents}
                 />
               </div>
