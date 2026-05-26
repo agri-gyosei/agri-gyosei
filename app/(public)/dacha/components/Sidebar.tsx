@@ -17,10 +17,10 @@ type Props = {
 export default function Sidebar({ currentCategory }: Props) {
   return (
     <div>
-      <div className="text-white px-4 py-3 rounded-t-lg" style={{ background: '#C4714A' }}>
-        <p className="font-bold text-sm tracking-wide">ジャンル別アーカイブ</p>
+      <div className="px-4 py-3 rounded-t-xl" style={{ background: '#C9A8A5' }}>
+        <p className="font-bold text-sm tracking-widest uppercase text-white">ジャンル別アーカイブ</p>
       </div>
-      <div className="bg-white rounded-b-lg shadow-sm" style={{ border: '1px solid #F0D8D0', borderTop: 'none' }}>
+      <div className="rounded-b-xl overflow-hidden" style={{ border: '1px solid #E4CFC9', borderTop: 'none', background: '#FFFFFF' }}>
         {GENRES.map((genre) => {
           const isActive = currentCategory === genre.label
           return (
@@ -29,17 +29,16 @@ export default function Sidebar({ currentCategory }: Props) {
               href={`/dacha?category=${encodeURIComponent(genre.label)}`}
               className="flex items-center gap-3 px-4 py-3 transition-colors border-b last:border-b-0"
               style={{
-                borderColor: '#F0D8D0',
-                background: isActive ? '#FDF0EB' : 'transparent',
-                color: '#3D2B1F',
+                borderColor: '#E4CFC9',
+                background: isActive ? '#F7EFED' : 'transparent',
               }}
             >
-              <span className="text-lg">{genre.icon}</span>
+              <span className="text-lg shrink-0">{genre.icon}</span>
               <div>
-                <p className="text-sm font-medium" style={{ color: isActive ? '#C4714A' : '#3D2B1F' }}>
+                <p className="text-sm font-medium" style={{ color: isActive ? '#B86B5A' : '#2A1A16' }}>
                   {genre.label}
                 </p>
-                <p className="text-xs text-gray-400">{genre.description}</p>
+                <p className="text-xs" style={{ color: '#7A6260' }}>{genre.description}</p>
               </div>
             </Link>
           )

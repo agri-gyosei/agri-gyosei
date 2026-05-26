@@ -25,6 +25,11 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+/* スクロールバー非表示ユーティリティ */
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
 /* ── 記事本文スタイル ── */
 .article-body {
   font-size: 1rem;
@@ -217,27 +222,27 @@ body {
 .dacha-body {
   font-size: 1rem;
   line-height: 1.85;
-  color: #3D2B1F;
+  color: #4A3530;
   word-break: break-word;
 }
 
 .dacha-body h2 {
-  border-left: 4px solid #C4714A;
-  background-color: #fdf0eb;
+  border-left: 4px solid #B86B5A;
+  background-color: #F7EFED;
   padding: 0.5rem 0.875rem;
   font-size: 1.2rem;
   font-weight: 700;
   margin-top: 2.25rem;
   margin-bottom: 1rem;
   border-radius: 0 0.375rem 0.375rem 0;
-  color: #3D2B1F;
+  color: #2A1A16;
 }
 
 .dacha-body h3 {
   font-size: 1.05rem;
   font-weight: 700;
-  color: #C4714A;
-  border-bottom: 2px solid #E8B4B8;
+  color: #B86B5A;
+  border-bottom: 2px solid #C9A8A5;
   padding-bottom: 0.3rem;
   margin-top: 1.75rem;
   margin-bottom: 0.75rem;
@@ -259,26 +264,26 @@ body {
 }
 
 .dacha-body a {
-  color: #C4714A;
+  color: #B86B5A;
   text-decoration: underline;
 }
 
 .dacha-body a:hover {
-  color: #a05a3a;
+  color: #9A5447;
 }
 
 .dacha-body strong {
-  color: #C4714A;
+  color: #B86B5A;
   font-weight: 700;
 }
 
 .dacha-body blockquote {
-  background-color: #fdf5f0;
-  border-left: 4px solid #C4714A;
+  background-color: #F7EFED;
+  border-left: 4px solid #B86B5A;
   padding: 16px 20px;
   margin: 1.5rem 0;
   border-radius: 4px;
-  color: #3D2B1F;
+  color: #2A1A16;
   font-style: normal;
 }
 
@@ -287,41 +292,41 @@ body {
 }
 
 .dacha-body .checklist-card {
-  background-color: #fdf5f0;
+  background-color: #F7EFED;
 }
 
 .dacha-body .numbered-list li::before {
-  background-color: #C4714A;
+  background-color: #B86B5A;
 }
 
 .dacha-body .table-scroll-wrapper {
-  border: 1px solid #F0D8D0;
+  border: 1px solid #E4CFC9;
 }
 
 .dacha-body table th {
-  background-color: #C4714A;
+  background-color: #B86B5A;
 }
 
 .dacha-body table td {
-  border: 1px solid #F0D8D0;
+  border: 1px solid #E4CFC9;
 }
 
 .dacha-body table tr:nth-child(even) td {
-  background-color: #fdf5f0;
+  background-color: #F7EFED;
 }
 
 .dacha-body code {
-  background-color: #f3f4f6;
+  background-color: #F3ECE9;
   padding: 0.125rem 0.375rem;
   border-radius: 0.25rem;
   font-size: 0.85rem;
-  color: #C4714A;
+  color: #B86B5A;
 }
 
 .dacha-body hr {
   border: none;
   height: 2px;
-  background: linear-gradient(to right, #C4714A, transparent);
+  background: linear-gradient(to right, #C9A8A5, transparent);
   margin: 32px 0;
 }
 

@@ -75,39 +75,41 @@ export default async function DachaArticlePage({ params }: Props) {
 
   return (
     <>
-    <header className="text-white py-4 px-6" style={{ background: 'linear-gradient(135deg, #C4714A 0%, #D4937A 100%)' }}>
+    {/* スリムなナビバー */}
+    <header className="px-6 py-4 border-b" style={{ background: '#FAF8F6', borderColor: '#E4CFC9' }}>
       <div className="max-w-5xl mx-auto flex flex-wrap items-baseline gap-2">
-        <a href="https://agri-gyosei.com" className="text-xs tracking-widest hover:text-white transition-colors shrink-0" style={{ color: 'rgba(255,255,255,0.7)' }}>
+        <a href="https://agri-gyosei.com" className="text-xs tracking-widest uppercase transition-colors shrink-0" style={{ color: '#7A6260' }}>
           agri-gyosei.com
         </a>
-        <span className="text-xs" style={{ color: 'rgba(255,255,255,0.4)' }}>/</span>
-        <Link href="/dacha" className="text-base font-bold text-white hover:opacity-90 transition-opacity">
+        <span className="text-xs" style={{ color: '#C9A8A5' }}>/</span>
+        <Link href="/dacha" className="text-sm font-semibold transition-opacity hover:opacity-70" style={{ color: '#B86B5A' }}>
           ダーチャという生き方
         </Link>
       </div>
     </header>
-    <div className="min-h-screen" style={{ background: '#FAF7F2' }}>
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 py-8">
-        <div className="mb-5">
-          <Link href="/dacha" className="text-sm hover:underline" style={{ color: '#C4714A' }}>
+
+    <div className="min-h-screen" style={{ background: '#FAF8F6' }}>
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 py-10">
+        <div className="mb-6">
+          <Link href="/dacha" className="text-sm transition-colors hover:opacity-70" style={{ color: '#B86B5A' }}>
             ← 記事一覧
           </Link>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_272px] gap-8">
           <main className="min-w-0">
-            <article className="bg-white rounded-xl shadow-sm p-6 sm:p-8" style={{ border: '1px solid #F0D8D0' }}>
-              <div className="flex flex-wrap items-center gap-2 mb-4">
-                <span className="text-xs px-3 py-1 rounded-full font-medium" style={{ background: '#F5E6E8', color: '#C4714A' }}>
+            <article className="rounded-xl p-6 sm:p-10" style={{ background: '#FFFFFF', border: '1px solid #E4CFC9' }}>
+              <div className="flex flex-wrap items-center gap-2 mb-5">
+                <span className="text-xs px-3 py-1 rounded-full font-medium" style={{ background: '#EDD5D0', color: '#A85F50' }}>
                   {article.category}
                 </span>
-                <time className="text-xs text-gray-400">
+                <time className="text-xs" style={{ color: '#7A6260' }}>
                   {new Date(article.published_at).toLocaleDateString('ja-JP', { timeZone: 'Asia/Tokyo' })}
                 </time>
               </div>
 
               {hasEyecatch && (
-                <div className="mb-8 rounded-lg overflow-hidden" style={{ border: '1px solid #F0D8D0' }}>
+                <div className="mb-8 rounded-lg overflow-hidden" style={{ border: '1px solid #E4CFC9' }}>
                   <Image
                     src={`/dacha/images/${slug}.png`}
                     alt={article.title}
@@ -119,7 +121,7 @@ export default async function DachaArticlePage({ params }: Props) {
                 </div>
               )}
 
-              <h1 className="text-2xl sm:text-3xl font-bold mb-8 leading-snug" style={{ color: '#3D2B1F' }}>
+              <h1 className="text-2xl sm:text-3xl font-bold mb-8 leading-snug" style={{ color: '#2A1A16' }}>
                 {article.title}
               </h1>
 
@@ -131,29 +133,31 @@ export default async function DachaArticlePage({ params }: Props) {
                 />
               </div>
 
-              <div className="mt-8 pt-6 border-t text-xs text-gray-400 leading-relaxed" style={{ borderColor: '#F0D8D0' }}>
+              <div className="mt-8 pt-6 border-t text-xs leading-relaxed" style={{ borderColor: '#E4CFC9', color: '#7A6260' }}>
                 本記事は一般的な情報提供を目的としており、個別の法的アドバイスではありません。詳細は農業委員会または行政書士にご相談ください。
               </div>
             </article>
 
-            <div className="mt-6 flex flex-wrap justify-center gap-3">
+            {/* 前後ナビゲーション */}
+            <div className="mt-8 flex flex-wrap justify-center gap-3">
               {prevArticle ? (
                 <Link
                   href={`/dacha/${prevArticle.slug}`}
-                  className="inline-flex items-center border px-5 py-2.5 rounded-full text-sm hover:opacity-80 transition-opacity bg-white"
-                  style={{ borderColor: '#C4714A', color: '#C4714A' }}
+                  className="inline-flex items-center border px-5 py-2.5 rounded-full text-sm transition-opacity hover:opacity-70 bg-white"
+                  style={{ borderColor: '#C9A8A5', color: '#B86B5A' }}
                 >
                   ← 前の記事を読む
                 </Link>
               ) : (
-                <span className="inline-flex items-center border border-gray-200 text-gray-300 px-5 py-2.5 rounded-full text-sm cursor-not-allowed">
+                <span className="inline-flex items-center border px-5 py-2.5 rounded-full text-sm cursor-not-allowed" style={{ borderColor: '#E4CFC9', color: '#C9A8A5' }}>
                   ← 前の記事を読む
                 </span>
               )}
 
               <Link
                 href="/dacha"
-                className="inline-flex items-center border border-gray-300 text-gray-600 bg-white px-5 py-2.5 rounded-full text-sm hover:bg-gray-50 transition-colors"
+                className="inline-flex items-center border bg-white px-5 py-2.5 rounded-full text-sm transition-colors hover:bg-gray-50"
+                style={{ borderColor: '#E4CFC9', color: '#4A3530' }}
               >
                 一覧ページへ
               </Link>
@@ -161,13 +165,13 @@ export default async function DachaArticlePage({ params }: Props) {
               {nextArticle ? (
                 <Link
                   href={`/dacha/${nextArticle.slug}`}
-                  className="inline-flex items-center text-white px-5 py-2.5 rounded-full text-sm hover:opacity-80 transition-opacity"
-                  style={{ background: '#C4714A' }}
+                  className="inline-flex items-center text-white px-5 py-2.5 rounded-full text-sm transition-opacity hover:opacity-80"
+                  style={{ background: '#B86B5A' }}
                 >
                   次の記事を読む →
                 </Link>
               ) : (
-                <span className="inline-flex items-center bg-gray-100 text-gray-300 px-5 py-2.5 rounded-full text-sm cursor-not-allowed">
+                <span className="inline-flex items-center px-5 py-2.5 rounded-full text-sm cursor-not-allowed" style={{ background: '#F3ECE9', color: '#C9A8A5' }}>
                   次の記事を読む →
                 </span>
               )}
