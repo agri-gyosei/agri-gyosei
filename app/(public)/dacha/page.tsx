@@ -75,22 +75,24 @@ export default async function DachaPage({ searchParams }: Props) {
 
         {/* ── ヒーローセクション ── */}
         <section style={{ background: 'linear-gradient(160deg, #C4714A 0%, #D4856E 45%, #E8B4B8 100%)' }}>
-          <div className="max-w-5xl mx-auto px-6 py-20 sm:py-32 text-center">
-            <p className="text-xs tracking-widest uppercase mb-6 sm:mb-8" style={{ color: 'rgba(255,255,255,0.6)' }}>
+          {/* モバイル：コンパクト / デスクトップ：余裕あり */}
+          <div className="max-w-5xl mx-auto px-6 py-8 sm:py-28 text-center">
+            <p className="text-xs tracking-widest uppercase mb-4 sm:mb-8" style={{ color: 'rgba(255,255,255,0.6)' }}>
               <a href="https://agri-gyosei.com" className="hover:text-white transition-colors">
                 agri-gyosei.com
               </a>
               {' '}/ dacha
             </p>
             <h1
-              className="font-bold text-white mb-4 sm:mb-6 leading-tight"
-              style={{ fontSize: 'clamp(1.75rem, 5vw, 3.5rem)', letterSpacing: '-0.02em' }}
+              className="font-bold text-white leading-tight mb-3 sm:mb-6"
+              style={{ fontSize: 'clamp(1.5rem, 5vw, 3.5rem)', letterSpacing: '-0.02em' }}
             >
-              食料自給は、<br className="sm:hidden" />国防と同じだ。
+              食料自給は、国防と同じだ。
             </h1>
+            {/* サブテキストはモバイルで非表示 */}
             <p
-              className="leading-relaxed max-w-md mx-auto px-2"
-              style={{ fontSize: 'clamp(0.875rem, 2vw, 1.125rem)', color: 'rgba(255,255,255,0.82)' }}
+              className="hidden sm:block leading-relaxed max-w-md mx-auto"
+              style={{ fontSize: '1.125rem', color: 'rgba(255,255,255,0.82)' }}
             >
               外資による農地買い占めが進む今、日本人が自らの手で食と国土を守る「ダーチャ」という選択肢がある。
             </p>
@@ -98,43 +100,43 @@ export default async function DachaPage({ searchParams }: Props) {
         </section>
 
         {/* ── カテゴリーフィルター（横スクロールタグ） ──
-            overflow-x-auto を sticky div 直下に置き、max-w の wrapper を挟まない。
-            これにより右端のタグがクリップされない。 */}
+            sticky と overflow-x:auto を同じ要素に与えると競合する。
+            sticky は外側 div、overflow-x:auto は内側 div に分離するのが正解。 */}
         <div
-          className="sticky top-0 z-20 border-b overflow-x-auto scrollbar-none"
-          style={{
-            background: '#FAF7F2',
-            borderColor: '#F0D8D0',
-            scrollbarWidth: 'none',
-            WebkitOverflowScrolling: 'touch',
-          } as React.CSSProperties}
+          className="sticky top-0 z-20 border-b"
+          style={{ background: '#FAF7F2', borderColor: '#F0D8D0' }}
         >
-          <div className="flex items-center gap-2 py-3 px-4 sm:px-6 w-max min-w-full">
-            <Link
-              href="/dacha"
-              className="flex-shrink-0 text-sm px-4 py-1.5 rounded-full font-medium transition-colors whitespace-nowrap"
-              style={!category
-                ? { background: '#C4714A', color: '#fff' }
-                : { background: '#F5E6E8', color: '#C4714A' }
-              }
-            >
-              すべて
-            </Link>
-            {GENRES.map((genre) => (
+          <div
+            className="overflow-x-auto scrollbar-none"
+            style={{ scrollbarWidth: 'none' } as any}
+          >
+            <div className="flex items-center gap-2 py-3 px-4 sm:px-6 w-max min-w-full">
               <Link
-                key={genre}
-                href={`/dacha?category=${encodeURIComponent(genre)}`}
+                href="/dacha"
                 className="flex-shrink-0 text-sm px-4 py-1.5 rounded-full font-medium transition-colors whitespace-nowrap"
-                style={category === genre
+                style={!category
                   ? { background: '#C4714A', color: '#fff' }
                   : { background: '#F5E6E8', color: '#C4714A' }
                 }
               >
-                {genre}
+                すべて
               </Link>
-            ))}
-            {/* 右端の余白（最後のタグが端に張り付かないように） */}
-            <span className="flex-shrink-0 w-4 sm:w-6" aria-hidden="true" />
+              {GENRES.map((genre) => (
+                <Link
+                  key={genre}
+                  href={`/dacha?category=${encodeURIComponent(genre)}`}
+                  className="flex-shrink-0 text-sm px-4 py-1.5 rounded-full font-medium transition-colors whitespace-nowrap"
+                  style={category === genre
+                    ? { background: '#C4714A', color: '#fff' }
+                    : { background: '#F5E6E8', color: '#C4714A' }
+                  }
+                >
+                  {genre}
+                </Link>
+              ))}
+              {/* 右端の余白スペーサー */}
+              <span className="flex-shrink-0 w-4 sm:w-6" aria-hidden="true" />
+            </div>
           </div>
         </div>
 
