@@ -1,0 +1,21 @@
+name: 行政書士記事 自動生成（毎朝5:00 JST）
+
+on:
+  schedule:
+    - cron: '0 20 * * *'  # UTC 20:00 = JST 翌5:00
+  workflow_dispatch:       # 手動実行ボタンも有効化
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger generate-article
+        run: |
+          response=$(curl -s -o /dev/null -w "%{http_code}" \
+            -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}" \
+            "https://agri-gyosei.com/api/cron/generate-article")
+          echo "HTTP Status: $response"
+          if [ "$response" != "200" ]; then
+            echo "Error: received HTTP $response"
+            exit 1
+          fi
