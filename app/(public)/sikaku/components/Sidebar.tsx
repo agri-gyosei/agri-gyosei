@@ -21,13 +21,11 @@ const CATEGORIES = [
     icon: '📚',
     label: '科目別',
     items: [
-      { label: '行政法（最重要・最初に2周）', filter: '行政法・憲法' },
-      { label: '民法（難所・リーガルマインドで攻略）', filter: '民法' },
-      { label: '憲法', filter: '行政法・憲法' },
-      { label: '商法・会社法（基本だけでOK）', filter: '商法・会社法' },
-      { label: '基礎知識／一般知識（足切り注意）', filter: '基礎知識・足切り対策' },
-      { label: '行政書士法・個人情報保護法', filter: '基礎知識・足切り対策' },
-      { label: '文章理解', filter: '基礎知識・足切り対策' },
+      { label: '行政法・憲法', filter: '行政法・憲法' },
+      { label: '民法', filter: '民法' },
+      { label: '商法・会社法', filter: '商法・会社法' },
+      { label: '基礎知識・足切り対策', filter: '基礎知識・足切り対策' },
+      { label: '過去問演習', filter: '過去問演習' },
     ] as CategoryItem[],
   },
   {
