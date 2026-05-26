@@ -104,7 +104,8 @@ export default async function DachaPage({ searchParams }: Props) {
           <div className="max-w-5xl mx-auto px-4 sm:px-6">
             <div
               className="scrollbar-none flex items-center gap-2 overflow-x-auto py-3"
-              style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' } as React.CSSProperties}
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              style={{ scrollbarWidth: 'none' } as any}
             >
               <Link
                 href="/dacha"
