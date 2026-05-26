@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 export default function SikakuFooter() {
   return (
-    <footer className="bg-green-900 text-white py-10 px-6">
+    <footer className="text-white py-10 px-6" style={{ background: '#1A2744' }}>
       <div className="max-w-5xl mx-auto">
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 mb-8">
           <div>
