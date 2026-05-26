@@ -204,11 +204,11 @@ export default async function SikakuPage({ searchParams }: Props) {
                 半年合格ロードマップ
               </p>
               <div className="grid grid-cols-2 gap-3">
-                {ROADMAP.map((item) => (
+                {ROADMAP.map((item, i) => (
                   <Link
                     key={item.subject}
                     href={item.href}
-                    className="p-4 block transition-shadow hover:shadow-md"
+                    className={`p-4 block transition-shadow hover:shadow-md${i === ROADMAP.length - 1 && ROADMAP.length % 2 !== 0 ? ' col-span-2' : ''}`}
                     style={{
                       background: '#fff',
                       border: '1px solid #E8E4DC',
