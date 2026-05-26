@@ -1,6 +1,9 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
+import Image from 'next/image'
+import * as fs from 'fs'
+import * as path from 'path'
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import remarkGfm from 'remark-gfm'
 import rehypeExternalLinks from 'rehype-external-links'
@@ -48,6 +51,9 @@ export default async function DachaArticlePage({ params }: Props) {
     .single()
 
   if (!article) notFound()
+
+  const eyecatchPath = path.join(process.cwd(), 'public', 'dacha', 'images', `${slug}.png`)
+  const hasEyecatch = fs.existsSync(eyecatchPath)
 
   const [{ data: prevData }, { data: nextData }] = await Promise.all([
     supabase
@@ -101,6 +107,19 @@ export default async function DachaArticlePage({ params }: Props) {
                   {new Date(article.published_at).toLocaleDateString('ja-JP', { timeZone: 'Asia/Tokyo' })}
                 </time>
               </div>
+
+              {hasEyecatch && (
+                <div className="mb-8 rounded-lg overflow-hidden" style={{ border: '1px solid #F0D8D0' }}>
+                  <Image
+                    src={`/dacha/images/${slug}.png`}
+                    alt={article.title}
+                    width={800}
+                    height={450}
+                    className="w-full h-auto"
+                    priority
+                  />
+                </div>
+              )}
 
               <h1 className="text-2xl sm:text-3xl font-bold mb-8 leading-snug" style={{ color: '#3D2B1F' }}>
                 {article.title}
