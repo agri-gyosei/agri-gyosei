@@ -108,15 +108,38 @@ export async function factCheckDachaArticle(
   }
 }
 
+// 2026/05/28〜06/03 の7日間は農地転用を離れ3テーマで配信
+const PRIORITY_SCHEDULE: Record<string, { category: string; topic: string }> = {
+  '2026-05-28': { category: 'ダーチャという生き方', topic: 'ダーチャとは何か？ロシアが飢えなかった理由' },
+  '2026-05-29': { category: '兼業農家入門',         topic: 'サラリーマンのまま農家になる方法' },
+  '2026-05-30': { category: '家庭菜園・保存食',     topic: '初心者が始めやすい家庭菜園5選' },
+  '2026-05-31': { category: 'ダーチャという生き方', topic: 'アナスタシアとダーチャ文化：自然共生の思想' },
+  '2026-06-01': { category: '兼業農家入門',         topic: '週末農業の始め方：必要な手続きと費用' },
+  '2026-06-02': { category: '家庭菜園・保存食',     topic: '保存食の基本：発酵・乾燥・瓶詰め' },
+  '2026-06-03': { category: 'ダーチャという生き方', topic: '日本版ダーチャのすすめ：農地付き週末別荘' },
+}
+
 export async function generateDachaArticle(jstDate: Date): Promise<DachaArticleOutput> {
   const client = new Anthropic()
-  const startOfYear = Date.UTC(jstDate.getUTCFullYear(), 0, 1)
-  const dayOfYear = Math.floor((jstDate.getTime() - startOfYear) / (1000 * 60 * 60 * 24)) + 1
 
-  const flatTopics = GENRES.flatMap((g) =>
-    g.topics.map((t) => ({ category: g.category, topic: t }))
-  )
-  const { category, topic } = flatTopics[dayOfYear % flatTopics.length]
+  const yyyy = jstDate.getUTCFullYear()
+  const mm = String(jstDate.getUTCMonth() + 1).padStart(2, '0')
+  const dd = String(jstDate.getUTCDate()).padStart(2, '0')
+  const dateKey = `${yyyy}-${mm}-${dd}`
+
+  let category: string
+  let topic: string
+
+  if (PRIORITY_SCHEDULE[dateKey]) {
+    ;({ category, topic } = PRIORITY_SCHEDULE[dateKey])
+  } else {
+    const startOfYear = Date.UTC(jstDate.getUTCFullYear(), 0, 1)
+    const dayOfYear = Math.floor((jstDate.getTime() - startOfYear) / (1000 * 60 * 60 * 24)) + 1
+    const flatTopics = GENRES.flatMap((g) =>
+      g.topics.map((t) => ({ category: g.category, topic: t }))
+    )
+    ;({ category, topic } = flatTopics[dayOfYear % flatTopics.length])
+  }
 
   const systemPrompt = dachaSystemPrompt
 
