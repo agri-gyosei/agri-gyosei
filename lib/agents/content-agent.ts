@@ -1,6 +1,6 @@
 import Anthropic from '@anthropic-ai/sdk'
-import * as fs from 'fs'
-import * as path from 'path'
+import contentSystemPrompt from './prompts/content-system'
+import sikakuFactcheckPrompt from './prompts/sikaku-factcheck'
 
 type TopicEntry = {
   category: string
@@ -127,8 +127,7 @@ export async function factCheckArticle(
   article: ArticleOutput,
   client: Anthropic
 ): Promise<{ body_mdx: string; changes: string[] }> {
-  const factcheckPath = path.join(__dirname, 'prompts', 'sikaku-factcheck.txt')
-  const factcheckPrompt = fs.readFileSync(factcheckPath, 'utf-8')
+  const factcheckPrompt = sikakuFactcheckPrompt
 
   const response = await client.messages.create({
     model: 'claude-sonnet-4-6',
@@ -169,8 +168,7 @@ export async function generateArticle(now: Date, articleIndex: number): Promise<
   const nextEntry = CURRICULUM[(articleIndex + 1) % CURRICULUM.length]
   const nextTopic = nextEntry.topic
 
-  const promptPath = path.join(__dirname, 'prompts', 'content-system.txt')
-  const systemPrompt = fs.readFileSync(promptPath, 'utf-8')
+  const systemPrompt = contentSystemPrompt
 
   const response = await client.messages.create({
     model: 'claude-sonnet-4-6',

@@ -1,6 +1,6 @@
 import Anthropic from '@anthropic-ai/sdk'
-import * as fs from 'fs'
-import * as path from 'path'
+import dachaSystemPrompt from './prompts/dacha-system'
+import dachaFactcheckPrompt from './prompts/dacha-factcheck'
 
 const GENRES = [
   {
@@ -80,8 +80,7 @@ export async function factCheckDachaArticle(
   article: DachaArticleOutput,
   client: Anthropic
 ): Promise<{ body_mdx: string; changes: string[] }> {
-  const factcheckPath = path.join(__dirname, 'prompts', 'dacha-factcheck.txt')
-  const factcheckPrompt = fs.readFileSync(factcheckPath, 'utf-8')
+  const factcheckPrompt = dachaFactcheckPrompt
 
   const response = await client.messages.create({
     model: 'claude-sonnet-4-6',
@@ -119,8 +118,7 @@ export async function generateDachaArticle(jstDate: Date): Promise<DachaArticleO
   )
   const { category, topic } = flatTopics[dayOfYear % flatTopics.length]
 
-  const promptPath = path.join(__dirname, 'prompts', 'dacha-system.txt')
-  const systemPrompt = fs.readFileSync(promptPath, 'utf-8')
+  const systemPrompt = dachaSystemPrompt
 
   const response = await client.messages.create({
     model: 'claude-sonnet-4-6',
