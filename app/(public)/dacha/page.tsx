@@ -170,18 +170,43 @@ export default async function DachaPage({ searchParams }: Props) {
                         className="w-full sm:w-[48%] relative"
                         style={{ minHeight: '200px', height: 'clamp(200px, 30vw, 320px)' }}
                       >
-                        <Image
-                          src={
-                            DACHA_CARD_IMAGE_SLUGS.has(featuredArticle.slug)
-                              ? `/dacha/images/${featuredArticle.slug}.png`
-                              : `/dacha/${featuredArticle.slug}/opengraph-image`
-                          }
-                          alt={featuredArticle.title}
-                          fill
-                          className="object-cover"
-                          priority
-                          unoptimized={!DACHA_CARD_IMAGE_SLUGS.has(featuredArticle.slug)}
-                        />
+                        {DACHA_CARD_IMAGE_SLUGS.has(featuredArticle.slug) ? (
+                          <Image
+                            src={`/dacha/images/${featuredArticle.slug}.png`}
+                            alt={featuredArticle.title}
+                            fill
+                            className="object-cover"
+                            priority
+                          />
+                        ) : (
+                          <div
+                            className="w-full h-full flex flex-col items-center justify-center gap-3 p-6"
+                            style={{ background: '#FAF7F2' }}
+                          >
+                            <div
+                              style={{
+                                position: 'absolute', top: 0, left: 0, right: 0, height: '6px',
+                                background: CATEGORY_GRADIENTS[featuredArticle.category]
+                                  ?? 'linear-gradient(135deg, #C4714A, #D4856E)',
+                              }}
+                            />
+                            <span
+                              className="text-xs px-3 py-1 rounded-full font-medium"
+                              style={{ background: '#E8B4B8', color: '#3D2B1F' }}
+                            >
+                              {featuredArticle.category}
+                            </span>
+                            <p
+                              className="font-bold text-center leading-snug"
+                              style={{ fontSize: 'clamp(0.9rem, 2vw, 1.25rem)', color: '#3D2B1F', maxWidth: '90%' }}
+                            >
+                              {featuredArticle.title}
+                            </p>
+                            <span className="text-xs mt-auto" style={{ color: '#C4714A' }}>
+                              agri-gyosei.com/dacha
+                            </span>
+                          </div>
+                        )}
                       </div>
 
                       {/* 下（モバイル）/ 右（デスクトップ）：テキスト */}
