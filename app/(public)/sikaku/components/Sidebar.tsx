@@ -3,7 +3,8 @@ import { createClient } from '@/lib/supabase/server'
 
 type CategoryItem = {
   label: string
-  filter: string
+  filter?: string
+  href?: string
 }
 
 const CATEGORIES = [
@@ -32,7 +33,7 @@ const CATEGORIES = [
     icon: '🎯',
     label: '合格戦略',
     items: [
-      { label: '満点ではなく合格点を狙う勉強法', filter: '過去問演習' },
+      { label: '満点ではなく合格点を狙う勉強法', href: '/sikaku/strategic-study-method-for-passing-score' },
       { label: '足切り対策（14問中6問正解が必須）', filter: '基礎知識・足切り対策' },
       { label: '直前期の苦手科目の復習法', filter: '過去問演習' },
       { label: '過去問の使い方', filter: '過去問演習' },
@@ -105,10 +106,11 @@ export default async function Sidebar({ currentCategory, currentMonth }: Props) 
               <ul className="space-y-1">
                 {group.items.map((item) => {
                   const isActive = currentCategory === item.filter
+                  const linkHref = item.href ?? `/sikaku?category=${encodeURIComponent(item.filter ?? '')}`
                   return (
                     <li key={item.label}>
                       <Link
-                        href={`/sikaku?category=${encodeURIComponent(item.filter)}`}
+                        href={linkHref}
                         className="block text-sm px-2 py-1 rounded transition-colors"
                         style={
                           isActive
