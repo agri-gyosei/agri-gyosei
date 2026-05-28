@@ -4,6 +4,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import remarkGfm from 'remark-gfm'
+import rehypeRaw from 'rehype-raw'
 import rehypeExternalLinks from 'rehype-external-links'
 import { createClient } from '@/lib/supabase/server'
 import { DACHA_EYECATCH_SLUGS } from '@/lib/dacha-eyecatch'
@@ -128,7 +129,7 @@ export default async function DachaArticlePage({ params }: Props) {
               <div className="dacha-body">
                 <MDXRemote
                   source={article.body_mdx}
-                  options={{ mdxOptions: { remarkPlugins: [remarkGfm], rehypePlugins: [[rehypeExternalLinks, { target: '_blank', rel: ['noopener', 'noreferrer'] }]] } }}
+                  options={{ mdxOptions: { remarkPlugins: [remarkGfm], rehypePlugins: [rehypeRaw, [rehypeExternalLinks, { target: '_blank', rel: ['noopener', 'noreferrer'] }]] } }}
                   components={articleComponents}
                 />
               </div>
