@@ -4,6 +4,7 @@ export const DACHA_EYECATCH_SLUGS = new Set([
   'salaryman-farmland-purchase-guide',
   'nouchi-tenyo-kyoka-flow-cost-gyoseishoshi',
   'what-is-dacha-why-russia-survived-famine',
+  'what-is-dacha-why-russia-survived-hunger',
 ])
 
 // カード一覧のサムネイルに使う画像（本文に画像があるものも含む）
@@ -14,4 +15,5 @@ export const DACHA_CARD_IMAGE_SLUGS = new Set([
   'agricultural-committee-application-complete-guide',
   'nouchi-tenyo-kyoka-flow-cost-gyoseishoshi',
   'what-is-dacha-why-russia-survived-famine',
+  'what-is-dacha-why-russia-survived-hunger',
 ])
