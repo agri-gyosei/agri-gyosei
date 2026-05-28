@@ -18,7 +18,10 @@ export const metadata: Metadata = {
   description: "農業経営と行政手続きの橋渡し。兼業農家の方々を全力でサポートする行政書士事務所です。",
   metadataBase: new URL("https://agri-gyosei.com"),
   verification: {
-    google: "xoAZpoonISYR9nRvvdGXD9DviORhx2qcxQyF_dzI3zM",
+    google: [
+      "xoAZpoonISYR9nRvvdGXD9DviORhx2qcxQyF_dzI3zM",
+      "16ZACFqQvztbofoWx7eH7GoC9VnFj1Mzjpx6vFzJ9LY",
+    ],
   },
   openGraph: {
     title: "兼業農家を支える行政書士",
