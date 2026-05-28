@@ -170,27 +170,18 @@ export default async function DachaPage({ searchParams }: Props) {
                         className="w-full sm:w-[48%] relative"
                         style={{ minHeight: '200px', height: 'clamp(200px, 30vw, 320px)' }}
                       >
-                        {DACHA_CARD_IMAGE_SLUGS.has(featuredArticle.slug) ? (
-                          <Image
-                            src={`/dacha/images/${featuredArticle.slug}.png`}
-                            alt={featuredArticle.title}
-                            fill
-                            className="object-cover"
-                            priority
-                          />
-                        ) : (
-                          <div
-                            className="w-full h-full flex flex-col items-start justify-end p-5 sm:p-6"
-                            style={{
-                              background: CATEGORY_GRADIENTS[featuredArticle.category]
-                                ?? 'linear-gradient(135deg, #C4714A, #D4856E)',
-                            }}
-                          >
-                            <span className="font-bold text-lg leading-snug" style={{ color: 'rgba(255,255,255,0.9)' }}>
-                              {featuredArticle.category}
-                            </span>
-                          </div>
-                        )}
+                        <Image
+                          src={
+                            DACHA_CARD_IMAGE_SLUGS.has(featuredArticle.slug)
+                              ? `/dacha/images/${featuredArticle.slug}.png`
+                              : `/dacha/${featuredArticle.slug}/opengraph-image`
+                          }
+                          alt={featuredArticle.title}
+                          fill
+                          className="object-cover"
+                          priority
+                          unoptimized={!DACHA_CARD_IMAGE_SLUGS.has(featuredArticle.slug)}
+                        />
                       </div>
 
                       {/* 下（モバイル）/ 右（デスクトップ）：テキスト */}
