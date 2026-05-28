@@ -39,22 +39,22 @@ body {
 }
 
 .article-body h2 {
-  border-left: 4px solid #15803d;
-  background-color: #f0fdf4;
+  border-left: 4px solid #4A7ACA;
+  background-color: #EEF2FA;
   padding: 0.5rem 0.875rem;
   font-size: 1.2rem;
   font-weight: 700;
   margin-top: 2.25rem;
   margin-bottom: 1rem;
   border-radius: 0 0.375rem 0.375rem 0;
-  color: #14532d;
+  color: #1A2744;
 }
 
 .article-body h3 {
   font-size: 1.05rem;
   font-weight: 700;
-  color: #166534;
-  border-bottom: 2px solid #bbf7d0;
+  color: #1A2744;
+  border-bottom: 2px solid #B8D0F5;
   padding-bottom: 0.3rem;
   margin-top: 1.75rem;
   margin-bottom: 0.75rem;
@@ -78,7 +78,7 @@ body {
 
 /* ✅ チェックリストカード */
 .checklist-card {
-  background-color: #f0f7f0;
+  background-color: #EEF2FA;
   border-radius: 8px;
   padding: 16px 20px;
   margin-bottom: 1.25rem;
@@ -118,7 +118,7 @@ body {
   top: 0.1em;
   width: 1.5rem;
   height: 1.5rem;
-  background-color: #2d6a4f;
+  background-color: #4A7ACA;
   color: white;
   border-radius: 50%;
   font-size: 0.7rem;
@@ -137,24 +137,24 @@ body {
 
 /* links */
 .article-body a {
-  color: #2d6a4f;
+  color: #4A7ACA;
   text-decoration: underline;
 }
 
 .article-body a:hover {
-  color: #166534;
+  color: #1A2744;
 }
 
 /* strong */
 .article-body strong {
-  color: #2d6a4f;
+  color: #1A2744;
   font-weight: 700;
 }
 
 /* blockquote */
 .article-body blockquote {
-  background-color: #f0f7f0;
-  border-left: 4px solid #2d6a4f;
+  background-color: #EEF2FA;
+  border-left: 4px solid #4A7ACA;
   padding: 16px 20px;
   margin: 1.5rem 0;
   border-radius: 4px;
@@ -172,7 +172,7 @@ body {
   -webkit-overflow-scrolling: touch;
   margin-bottom: 1.5rem;
   border-radius: 8px;
-  border: 1px solid #d1e7da;
+  border: 1px solid #E8E4DC;
 }
 
 .article-body table {
@@ -183,7 +183,7 @@ body {
 }
 
 .article-body table th {
-  background-color: #2d6a4f;
+  background-color: #1A2744;
   color: white;
   font-weight: 700;
   padding: 12px;
@@ -193,12 +193,12 @@ body {
 
 .article-body table td {
   padding: 12px;
-  border: 1px solid #d1e7da;
+  border: 1px solid #E8E4DC;
   text-align: left;
 }
 
 .article-body table tr:nth-child(even) td {
-  background-color: #f0f7f0;
+  background-color: #F5F7FC;
 }
 
 /* code */
@@ -213,8 +213,8 @@ body {
 /* hr */
 .article-body hr {
   border: none;
-  height: 2px;
-  background: linear-gradient(to right, #2d6a4f, transparent);
+  height: 1px;
+  background: #E8E4DC;
   margin: 32px 0;
 }
 
