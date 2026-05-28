@@ -92,13 +92,13 @@ export default async function Sidebar({ currentCategory, currentMonth }: Props) 
     <div className="space-y-4">
       {/* 学習カテゴリー */}
       <div>
-        <div className="bg-green-800 text-white px-4 py-3 rounded-t-lg">
-          <p className="font-bold text-sm tracking-wide">半年合格ロードマップ</p>
+        <div className="px-4 py-3 rounded-t-lg" style={{ background: '#1A2744' }}>
+          <p className="font-bold text-sm tracking-wide" style={{ color: '#F0F5FF' }}>半年合格ロードマップ</p>
         </div>
-        <div className="bg-white rounded-b-lg shadow-sm border border-gray-100 divide-y divide-gray-100">
+        <div className="bg-white rounded-b-lg shadow-sm divide-y" style={{ border: '1px solid #E8E4DC', borderTop: 'none' }}>
           {CATEGORIES.map((group) => (
             <div key={group.label} className="px-4 py-3">
-              <p className="text-xs font-bold text-gray-500 mb-2 flex items-center gap-1">
+              <p className="text-xs font-bold mb-2 flex items-center gap-1" style={{ color: '#8A8880' }}>
                 <span>{group.icon}</span>
                 <span>{group.label}</span>
               </p>
@@ -109,11 +109,12 @@ export default async function Sidebar({ currentCategory, currentMonth }: Props) 
                     <li key={item.label}>
                       <Link
                         href={`/sikaku?category=${encodeURIComponent(item.filter)}`}
-                        className={`block text-sm px-2 py-1 rounded transition-colors ${
+                        className="block text-sm px-2 py-1 rounded transition-colors"
+                        style={
                           isActive
-                            ? 'bg-green-100 text-green-800 font-medium'
-                            : 'text-gray-600 hover:text-green-700 hover:bg-green-50'
-                        }`}
+                            ? { background: '#EEF2FA', color: '#1A2744', fontWeight: 600 }
+                            : { color: '#555' }
+                        }
                       >
                         {item.label}
                       </Link>
@@ -129,25 +130,26 @@ export default async function Sidebar({ currentCategory, currentMonth }: Props) 
       {/* 月別アーカイブ */}
       {monthlyArchive.length > 0 && (
         <div>
-          <div className="bg-green-800 text-white px-4 py-3 rounded-t-lg">
-            <p className="font-bold text-sm tracking-wide">📅 月別学習アーカイブ</p>
+          <div className="px-4 py-3 rounded-t-lg" style={{ background: '#1A2744' }}>
+            <p className="font-bold text-sm tracking-wide" style={{ color: '#F0F5FF' }}>📅 月別学習アーカイブ</p>
           </div>
-          <div className="bg-white rounded-b-lg shadow-sm border border-gray-100">
-            <ul className="divide-y divide-gray-100">
+          <div className="bg-white rounded-b-lg shadow-sm" style={{ border: '1px solid #E8E4DC', borderTop: 'none' }}>
+            <ul className="divide-y" style={{ borderColor: '#E8E4DC' }}>
               {monthlyArchive.map(({ month, count }) => {
                 const isActive = currentMonth === month
                 return (
                   <li key={month}>
                     <Link
                       href={`/sikaku?month=${month}`}
-                      className={`flex items-center justify-between px-4 py-2.5 text-sm transition-colors ${
+                      className="flex items-center justify-between px-4 py-2.5 text-sm transition-colors"
+                      style={
                         isActive
-                          ? 'bg-green-100 text-green-800 font-medium'
-                          : 'text-gray-600 hover:text-green-700 hover:bg-green-50'
-                      }`}
+                          ? { background: '#EEF2FA', color: '#1A2744', fontWeight: 600 }
+                          : { color: '#555' }
+                      }
                     >
                       <span>{formatMonthLabel(month)}</span>
-                      <span className="text-xs text-gray-400">{count}記事</span>
+                      <span className="text-xs" style={{ color: '#9A9890' }}>{count}記事</span>
                     </Link>
                   </li>
                 )
