@@ -51,6 +51,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${seoTitle} | 行政書士試験対策`,
     description: data.seo_description ?? undefined,
+    alternates: {
+      canonical: `https://agri-gyosei.com/sikaku/${slug}`,
+    },
     openGraph: {
       title: seoTitle,
       description: data.seo_description ?? undefined,

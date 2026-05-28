@@ -6,6 +6,9 @@ import Footer from './components/Footer'
 export const metadata: Metadata = {
   title: '行政書士試験を半年で突破する｜agri-gyosei.com',
   description: '毎日更新！社会人受験生のための行政書士試験合格ガイド。行政法・民法・憲法・商法を効率よく学ぶ。',
+  alternates: {
+    canonical: 'https://agri-gyosei.com/sikaku',
+  },
 }
 
 export const revalidate = 3600

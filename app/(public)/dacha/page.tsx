@@ -8,6 +8,9 @@ import { DACHA_CARD_IMAGE_SLUGS } from '@/lib/dacha-eyecatch'
 export const metadata: Metadata = {
   title: 'ダーチャという生き方｜農地と食料安全保障',
   description: '農地取得・食料安全保障・ダーチャ文化について発信。外資による農地買い占めから日本の国土を守り、家族の食を自分たちの手で守る生き方を提案します。',
+  alternates: {
+    canonical: 'https://agri-gyosei.com/dacha',
+  },
 }
 
 export const revalidate = 3600

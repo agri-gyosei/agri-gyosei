@@ -32,6 +32,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${data.title} | ダーチャという生き方`,
     description: data.seo_description ?? undefined,
+    alternates: {
+      canonical: `https://agri-gyosei.com/dacha/${slug}`,
+    },
     openGraph: {
       title: data.title,
       description: data.seo_description ?? undefined,
