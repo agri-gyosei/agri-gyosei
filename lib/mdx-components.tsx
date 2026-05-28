@@ -33,13 +33,13 @@ function ArticleOl({ children, ...props }: OlProps) {
 }
 
 function ArticleLink({ href, children, ...props }: AProps) {
-  const isExternal = href?.startsWith('http')
+  const isExternal = href?.startsWith('http') && !href.includes('agri-gyosei.com')
   return (
     <a
-      href={href}
-      target={isExternal ? '_blank' : undefined}
-      rel={isExternal ? 'noopener noreferrer' : undefined}
       {...props}
+      href={href}
+      target={isExternal ? '_blank' : props.target}
+      rel={isExternal ? 'noopener noreferrer' : props.rel}
     >
       {children}
     </a>
