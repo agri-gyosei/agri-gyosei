@@ -10,6 +10,16 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  /* 時の杜 story colors */
+  --color-ink: #0f0e0c;
+  --color-gold: #d4af37;
+  --color-paper: #f5f0e8;
+  --color-muted-foreground: #9ca3af;
+}
+
+/* 時の杜: font-serif を Cormorant Garamond + Zen Old Mincho にスコープ */
+.story-root {
+  --font-serif: var(--font-cormorant), var(--font-zen-old-mincho), Georgia, serif;
 }
 
 @media (prefers-color-scheme: dark) {
