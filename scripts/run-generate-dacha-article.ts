@@ -28,6 +28,23 @@ async function main() {
     jstDate = new Date(Date.now() + 9 * 60 * 60 * 1000)
   }
 
+  // 当日JST内に既に記事が存在する場合はスキップ（重複生成防止）
+  const yyyy = jstDate.getUTCFullYear()
+  const mm = jstDate.getUTCMonth()
+  const dd = jstDate.getUTCDate()
+  const jstDayStartUTC = new Date(Date.UTC(yyyy, mm, dd, 0, 0, 0) - 9 * 60 * 60 * 1000)
+  const jstDayEndUTC = new Date(jstDayStartUTC.getTime() + 24 * 60 * 60 * 1000)
+  const { data: existing } = await supabase
+    .from('dacha_articles')
+    .select('id, title')
+    .gte('published_at', jstDayStartUTC.toISOString())
+    .lt('published_at', jstDayEndUTC.toISOString())
+    .limit(1)
+  if (existing && existing.length > 0) {
+    console.log(`スキップ: 本日のダーチャ記事は既に存在します（${existing[0].title}）`)
+    return
+  }
+
   console.log(`ダーチャ記事生成開始: ${jstDate.toISOString()}`)
   const client = new Anthropic()
   const article = await generateDachaArticle(jstDate)

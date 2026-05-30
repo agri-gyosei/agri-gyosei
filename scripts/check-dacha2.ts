@@ -17,8 +17,8 @@ async function main() {
   )
   const { data, error } = await supabase
     .from('dacha_articles')
-    .select('id, slug, title, created_at')
-    .order('created_at', { ascending: false })
+    .select('id, slug, title, published_at')
+    .order('published_at', { ascending: false })
     .limit(5)
   console.log('error:', JSON.stringify(error))
   console.log('data:', JSON.stringify(data, null, 2))

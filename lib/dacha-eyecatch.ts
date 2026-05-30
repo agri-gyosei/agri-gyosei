@@ -6,6 +6,7 @@ export const DACHA_EYECATCH_SLUGS = new Set([
   'what-is-dacha-why-russia-survived-famine',
   'what-is-dacha-why-russia-survived-hunger',
   'salaryman-becoming-part-time-farmer',
+  'beginner-kitchen-garden-5-vegetables',
 ])
 
 // カード一覧のサムネイルに使う画像（本文に画像があるものも含む）
@@ -18,4 +19,5 @@ export const DACHA_CARD_IMAGE_SLUGS = new Set([
   'what-is-dacha-why-russia-survived-famine',
   'what-is-dacha-why-russia-survived-hunger',
   'salaryman-becoming-part-time-farmer',
+  'beginner-kitchen-garden-5-vegetables',
 ])
