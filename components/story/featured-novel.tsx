@@ -48,13 +48,12 @@ export function FeaturedNovel() {
               className="relative w-full h-full"
             >
               <Image
-                src="https://placehold.co/600x800/1a1a1a/666666?text=COVER"
+                src="/images/goshiki-cover.png"
                 alt="五色の詩 ～ムーの子供たちへ～ by 五十音 百"
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 50vw"
                 priority
-                unoptimized
               />
               
               {/* Subtle border overlay */}

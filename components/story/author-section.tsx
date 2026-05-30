@@ -30,12 +30,11 @@ export function AuthorSection() {
             className="absolute inset-0"
           >
             <Image
-              src="https://placehold.co/600x600/1a1a1a/666666?text=PHOTO"
+              src="/images/author-isone.png"
               alt="五十音 百"
               fill
               className="object-cover object-top"
               sizes="(max-width: 1024px) 100vw, 50vw"
-              unoptimized
             />
             
             {/* Gradient overlay */}
