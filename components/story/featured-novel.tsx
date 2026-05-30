@@ -3,6 +3,7 @@
 import { motion, useScroll, useTransform } from "framer-motion"
 import { useRef } from "react"
 import Image from "next/image"
+import Link from "next/link"
 
 export function FeaturedNovel() {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -141,10 +142,10 @@ export function FeaturedNovel() {
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.8 }}
             >
-              <button className="group relative overflow-hidden border border-ink px-8 py-4 text-ink text-sm tracking-[0.3em] uppercase transition-colors duration-500 hover:text-paper">
+              <Link href="/story/goshiki-no-uta" className="group relative inline-block overflow-hidden border border-ink px-8 py-4 text-ink text-sm tracking-[0.3em] uppercase transition-colors duration-500 hover:text-paper">
                 <span className="relative z-10">読む</span>
                 <span className="absolute inset-0 bg-ink transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-out" />
-              </button>
+              </Link>
             </motion.div>
           </motion.div>
         </div>
