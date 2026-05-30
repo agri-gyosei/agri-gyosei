@@ -88,25 +88,22 @@ export function Navigation() {
           </motion.div>
 
           {/* Mobile menu button */}
-          <motion.button
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="md:hidden flex flex-col gap-1.5 p-1"
+          <button
+            className="md:hidden flex flex-col gap-1.5 p-2"
             aria-label={menuOpen ? "Close menu" : "Open menu"}
             onClick={() => setMenuOpen((v) => !v)}
           >
             <motion.span
               animate={menuOpen ? { rotate: 45, y: 5 } : { rotate: 0, y: 0 }}
               transition={{ duration: 0.25 }}
-              className="block w-5 h-px bg-paper origin-center"
+              className={`block w-5 h-px origin-center ${atTop ? "bg-paper" : "bg-foreground"}`}
             />
             <motion.span
               animate={menuOpen ? { rotate: -45, y: -3 } : { rotate: 0, y: 0 }}
               transition={{ duration: 0.25 }}
-              className="block w-5 h-px bg-paper origin-center"
+              className={`block w-5 h-px origin-center ${atTop ? "bg-paper" : "bg-foreground"}`}
             />
-          </motion.button>
+          </button>
         </nav>
       </motion.header>
 

@@ -97,8 +97,7 @@ export function AnimatedSikakuArticles({ articles, category }: ArticlesProps) {
           <motion.div
             key={article.id}
             variants={cardVariants}
-            whileHover={{ y: -4 }}
-            transition={{ duration: 0.22, ease: "easeOut" }}
+            whileHover={{ y: -4, transition: { duration: 0.22, ease: "easeOut" } }}
           >
             <Link
               href={`/sikaku/${article.slug}`}
