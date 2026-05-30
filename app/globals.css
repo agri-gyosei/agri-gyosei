@@ -346,3 +346,32 @@ body {
   margin-bottom: 2rem;
   display: block;
 }
+
+/* ── 時の杜 章本文スタイル ── */
+.chapter-body {
+  font-family: var(--font-zen-old-mincho), "游明朝", "Yu Mincho", serif;
+  font-size: 1.05rem;
+  line-height: 2.2;
+  color: rgba(245, 240, 232, 0.78);
+}
+
+.chapter-body p {
+  margin-bottom: 1.75rem;
+}
+
+.chapter-body strong {
+  color: rgba(212, 175, 55, 0.9);
+  font-weight: 700;
+}
+
+.chapter-body em {
+  font-style: italic;
+  color: rgba(245, 240, 232, 0.55);
+}
+
+.chapter-body hr {
+  border: none;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(212, 175, 55, 0.2), transparent);
+  margin: 2.5rem 0;
+}

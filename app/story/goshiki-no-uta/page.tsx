@@ -167,10 +167,10 @@ export default function GoshikiNoUtaPage() {
           viewport={{ once: true, margin: "-60px" }}
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
         >
-          {CHAPTERS.map((ch) => (
+          {CHAPTERS.map((ch, i) => (
             <motion.div key={ch.slug} variants={cardVariants}>
               <Link
-                href={`/story/goshiki-no-uta/${ch.slug}`}
+                href={`/story/goshiki-no-uta/${i + 1}`}
                 className="group block relative rounded-sm border border-paper/10 bg-white/5 backdrop-blur-sm p-6 transition-all duration-500 hover:border-gold/30 hover:bg-white/[0.08]"
               >
                 {/* Gold accent line */}
