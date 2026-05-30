@@ -54,6 +54,7 @@ export function FeaturedNovel() {
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 50vw"
                 priority
+                unoptimized
               />
               
               {/* Subtle border overlay */}
