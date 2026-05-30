@@ -2,6 +2,7 @@
 
 import { motion, useScroll, useMotionValueEvent } from "framer-motion"
 import { useState } from "react"
+import Link from "next/link"
 
 export function Navigation() {
   const [hidden, setHidden] = useState(false)
@@ -36,12 +37,12 @@ export function Navigation() {
     >
       <nav className="max-w-7xl mx-auto px-6 py-6 flex items-center justify-between">
         {/* Logo */}
-        <motion.a
-          href="#"
+        <Link href="/story">
+        <motion.span
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.5 }}
-          className="flex items-center gap-3"
+          className="flex items-center gap-3 cursor-pointer"
         >
           <span className={`font-serif text-sm tracking-[0.3em] transition-colors duration-500 ${
             atTop ? "text-gold/80" : "text-gold"
@@ -53,7 +54,8 @@ export function Navigation() {
           }`}>
             Toki no Mori
           </span>
-        </motion.a>
+        </motion.span>
+        </Link>
 
         {/* Navigation links */}
         <motion.div
