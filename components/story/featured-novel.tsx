@@ -19,6 +19,7 @@ export function FeaturedNovel() {
   return (
     <section
       ref={containerRef}
+      id="featured"
       className="relative min-h-screen w-full bg-background py-32 md:py-48"
     >
       <div className="mx-auto max-w-7xl px-6">

@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase/server'
 import Footer from './components/Footer'
+import { AnimatedSikakuHero, AnimatedSikakuArticles } from './components/AnimatedSikakuContent'
 
 export const metadata: Metadata = {
   title: '行政書士試験を半年で突破する｜agri-gyosei.com',
@@ -118,15 +119,7 @@ export default async function SikakuPage({ searchParams }: Props) {
                 sikaku
               </Link>
             </p>
-            <h1
-              className="mb-2"
-              style={{ color: '#F0F5FF', fontSize: '2rem', fontWeight: 500, letterSpacing: '-0.01em', lineHeight: 1.3 }}
-            >
-              行政書士試験を半年で突破する
-            </h1>
-            <p style={{ color: '#8AA0C8', fontSize: '13px' }}>
-              毎日更新分だけ学ぶ｜社会人受験生のための合格ガイド
-            </p>
+            <AnimatedSikakuHero />
           </div>
 
           {/* 学習進捗バー */}
@@ -275,63 +268,7 @@ export default async function SikakuPage({ searchParams }: Props) {
             {category ? `${category}の記事` : '最新の記事'}
           </p>
 
-          {articles.length === 0 ? (
-            <div className="text-center py-20">
-              <p className="text-sm mb-3" style={{ color: '#8A8880' }}>
-                {category ? 'このカテゴリーの記事はまだありません。' : '記事を準備中です。しばらくお待ちください。'}
-              </p>
-              {category && (
-                <Link href="/sikaku" className="text-sm hover:underline" style={{ color: '#4A7ACA' }}>
-                  すべての記事を見る →
-                </Link>
-              )}
-            </div>
-          ) : (
-            <div className="space-y-3">
-              {articles.map((article) => {
-                const borderColor = BORDER_COLORS[article.category] ?? DEFAULT_BORDER
-                return (
-                  <Link
-                    key={article.id}
-                    href={`/sikaku/${article.slug}`}
-                    className="block p-5 transition-shadow hover:shadow-md"
-                    style={{
-                      background: '#fff',
-                      border: '1px solid #E8E4DC',
-                      borderLeft: `3px solid ${borderColor}`,
-                      borderRadius: '10px',
-                    }}
-                  >
-                    <div className="flex items-center gap-2 mb-2">
-                      <span
-                        className="text-xs px-2 py-0.5 rounded-full font-medium"
-                        style={{ background: '#EEF2FA', color: '#1A2744' }}
-                      >
-                        {article.category}
-                      </span>
-                      <time className="text-xs" style={{ color: '#9A9890' }}>
-                        {new Date(article.published_at).toLocaleDateString('ja-JP', { timeZone: 'Asia/Tokyo' })}
-                      </time>
-                    </div>
-                    <h2
-                      className="font-semibold text-base leading-snug mb-1"
-                      style={{ color: '#1A2744' }}
-                    >
-                      {article.title}
-                    </h2>
-                    {article.seo_description && (
-                      <p
-                        className="text-xs leading-relaxed line-clamp-2"
-                        style={{ color: '#7A7870' }}
-                      >
-                        {article.seo_description}
-                      </p>
-                    )}
-                  </Link>
-                )
-              })}
-            </div>
-          )}
+          <AnimatedSikakuArticles articles={articles} category={category} />
         </div>
       </div>
       <Footer />

@@ -64,17 +64,29 @@ export function Navigation() {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="hidden md:flex items-center gap-12"
         >
-          {["Catalogue", "Authors", "About"].map((item, i) => (
-            <a
-              key={item}
-              href="#"
-              className={`text-xs tracking-[0.2em] uppercase transition-colors duration-300 hover:text-gold ${
-                atTop ? "text-paper/70 hover:text-gold" : "text-foreground/70 hover:text-gold"
-              }`}
-            >
-              {item}
-            </a>
-          ))}
+          <Link
+            href="/story#featured"
+            className={`text-xs tracking-[0.2em] uppercase transition-colors duration-300 hover:text-gold ${
+              atTop ? "text-paper/70 hover:text-gold" : "text-foreground/70 hover:text-gold"
+            }`}
+          >
+            Catalogue
+          </Link>
+          <Link
+            href="/story#author"
+            className={`text-xs tracking-[0.2em] uppercase transition-colors duration-300 hover:text-gold ${
+              atTop ? "text-paper/70 hover:text-gold" : "text-foreground/70 hover:text-gold"
+            }`}
+          >
+            Authors
+          </Link>
+          <span
+            className={`text-xs tracking-[0.2em] uppercase cursor-default select-none ${
+              atTop ? "text-paper/30" : "text-foreground/30"
+            }`}
+          >
+            About
+          </span>
         </motion.div>
 
         {/* Mobile menu button */}

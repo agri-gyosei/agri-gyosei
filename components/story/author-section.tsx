@@ -17,6 +17,7 @@ export function AuthorSection() {
   return (
     <section
       ref={containerRef}
+      id="author"
       className="relative w-full bg-ink overflow-hidden"
     >
       {/* Background gradient */}
