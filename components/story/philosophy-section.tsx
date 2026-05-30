@@ -41,7 +41,7 @@ export function PhilosophySection() {
             最後のページを閉じた後も
           </p>
           <p className="text-ink text-[clamp(1.5rem,4vw,2.5rem)] font-serif leading-[1.5] tracking-[0.02em] mt-6">
-            あなたの物語はあなたが創造するもの
+            あなたの物語はあなたが創造する
           </p>
         </motion.blockquote>
 
