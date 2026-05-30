@@ -17,7 +17,7 @@ export function AuthorSection() {
   return (
     <section
       ref={containerRef}
-      className="relative min-h-screen w-full bg-ink overflow-hidden"
+      className="relative w-full bg-ink overflow-hidden"
     >
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-ink to-ink" />

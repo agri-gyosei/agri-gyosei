@@ -142,9 +142,9 @@ export function FeaturedNovel() {
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.8 }}
             >
-              <Link href="/story/goshiki-no-uta" className="group relative inline-block overflow-hidden border border-ink px-8 py-4 text-ink text-sm tracking-[0.3em] uppercase transition-colors duration-500 hover:text-paper">
+              <Link href="/story/goshiki-no-uta" className="group relative inline-block overflow-hidden border border-[#c9a84c] px-8 py-4 text-[#c9a84c] text-sm tracking-[0.3em] uppercase transition-colors duration-500 hover:text-ink">
                 <span className="relative z-10">読む</span>
-                <span className="absolute inset-0 bg-ink transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-out" />
+                <span className="absolute inset-0 bg-[#c9a84c] transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-out" />
               </Link>
             </motion.div>
           </motion.div>

@@ -1,6 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
+import Link from "next/link"
 
 export function Footer() {
   return (
@@ -14,9 +15,9 @@ export function Footer() {
           transition={{ duration: 0.8, delay: 0.1 }}
           className="flex flex-col items-center text-center mb-16"
         >
-          <p className="font-serif text-gold text-lg tracking-[0.3em] mb-4">
+          <Link href="/story" className="font-serif text-gold text-lg tracking-[0.3em] mb-4 hover:text-gold/70 transition-colors duration-300">
             時の杜
-          </p>
+          </Link>
           <p className="text-paper/40 text-xs tracking-[0.2em] uppercase">
             Toki no Mori
           </p>
