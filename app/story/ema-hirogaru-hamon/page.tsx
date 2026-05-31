@@ -37,11 +37,6 @@ const CHAPTERS = [
     excerpt: "二つの話が、全く違う方向から同じ場所へ向かっていた。偶然とは思えなかった。",
   },
   {
-    number: "第6章半",
-    title: "忘却",
-    excerpt: "覚えていないのか、消されたのか。その違いが、全てを変える問いだった。",
-  },
-  {
     number: "第7章",
     title: "形",
     excerpt: "見えないものに、形を与えようとした。言葉にした瞬間、それは現実になり始めた。",
@@ -72,12 +67,12 @@ const CHAPTERS = [
     excerpt: "届いた。それだけで十分だった。返信は、予想とは全く違う形をしていた。",
   },
   {
-    number: "帰国",
+    number: "",
     title: "帰国",
     excerpt: "戻った場所は同じだった。でも自分が変わっていた。東京の空気が、前と違って感じた。",
   },
   {
-    number: "奥多摩",
+    number: "",
     title: "奥多摩",
     excerpt: "また、あの山へ。最初に気づいた場所へ。何かを終わらせるためではなく、始めるために。",
   },
@@ -183,9 +178,11 @@ export default function EmaHirogaruHamonPage() {
               >
                 <span className="absolute left-0 top-0 h-full w-px bg-gradient-to-b from-transparent via-gold/0 to-transparent transition-all duration-500 group-hover:via-gold/40" />
 
-                <p className="font-serif text-gold/40 text-[0.65rem] tracking-[0.3em] mb-4 transition-colors duration-300 group-hover:text-gold/70">
-                  {ch.number}
-                </p>
+                {ch.number && (
+                  <p className="font-serif text-gold/40 text-[0.65rem] tracking-[0.3em] mb-4 transition-colors duration-300 group-hover:text-gold/70">
+                    {ch.number}
+                  </p>
+                )}
 
                 <h2 className="font-serif text-paper text-xl font-light leading-snug tracking-wide mb-3 transition-colors duration-300 group-hover:text-gold/90">
                   {ch.title}
