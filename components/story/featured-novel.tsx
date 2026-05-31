@@ -41,11 +41,11 @@ function NovelEntry({
   return (
     <div ref={containerRef} id={id} className="relative w-full py-32 md:py-48">
       <div className="mx-auto max-w-7xl px-6">
-        <div className={`grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center ${reverse ? "lg:[&>*:first-child]:order-2 lg:[&>*:last-child]:order-1" : ""}`}>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
           {/* Book cover */}
           <motion.div
             style={{ y: imageY }}
-            className="relative aspect-[2/3] w-full max-w-md mx-auto lg:mx-0"
+            className={`relative aspect-[2/3] w-full max-w-md mx-auto lg:mx-0 ${reverse ? "lg:order-2" : "lg:order-1"}`}
           >
             <div className="absolute -bottom-8 left-8 right-8 h-32 bg-gradient-to-t from-ink/20 to-transparent blur-2xl" />
             <motion.div
@@ -75,7 +75,7 @@ function NovelEntry({
           </motion.div>
 
           {/* Book details */}
-          <motion.div style={{ y: textY }} className="relative">
+          <motion.div style={{ y: textY }} className={`relative ${reverse ? "lg:order-1" : "lg:order-2"}`}>
             <motion.p
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
