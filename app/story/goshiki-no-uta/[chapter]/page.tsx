@@ -41,6 +41,32 @@ export async function generateStaticParams() {
   return chapters.map((_, i) => ({ chapter: String(i + 1) }))
 }
 
+export async function generateMetadata({ params }: Props) {
+  const { chapter: chapterParam } = await params
+  const chapters = parseChapters()
+  const idx = parseInt(chapterParam, 10) - 1
+  if (isNaN(idx) || idx < 0 || idx >= chapters.length) return {}
+  const current = chapters[idx]
+  const chapterUrl = `https://agri-gyosei.com/story/goshiki-no-uta/${current.index}`
+  return {
+    title: `${current.label}「${current.title}」| 五色の詩 | 時の杜`,
+    description: '古代ムー大陸の記憶を継ぐ子供たちの物語。五つの色に秘められた謎が、現代と太古の世界を繋ぎ、失われた真実へと導く。五十音 百 著。',
+    alternates: { canonical: chapterUrl },
+    openGraph: {
+      title: `${current.label}「${current.title}」| 五色の詩 | 時の杜`,
+      description: '古代ムー大陸の記憶を継ぐ子供たちの物語。五つの色に秘められた謎が、現代と太古の世界を繋ぎ、失われた真実へと導く。五十音 百 著。',
+      url: chapterUrl,
+      type: 'article',
+      images: [{ url: 'https://agri-gyosei.com/images/goshiki-cover.png' }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${current.label}「${current.title}」| 五色の詩 | 時の杜`,
+      images: ['https://agri-gyosei.com/images/goshiki-cover.png'],
+    },
+  }
+}
+
 export default async function ChapterPage({ params }: Props) {
   const { chapter: chapterParam } = await params
   const chapters = parseChapters()
