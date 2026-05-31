@@ -150,7 +150,79 @@ Claude Codeは以下を毎回実行すること：
 - 国防・食料安全保障・土地取得・家族を守る・国土を守る
   などのテーマを含むダーチャ記事を書くときのみ参照する
 
-# Design Quality
-Follow the frontend-design skill for all UI work.
-Use kusumiPink (#D4A5A5) + terracotta (#C4704F) + offwhite (#F8F5F0) color system.
-Avoid Inter, Roboto, Arial. Choose editorial fonts.
+# Design Quality Standard — $10K Checklist
+
+このプロジェクトのすべてのUI実装・修正時に以下を遵守すること。
+フロントエンドのコードを書くたびに、この8項目をチェックリストとして使う。
+
+---
+
+## 01 Point of view — 明確なデザイン方向性
+- サイトごとにコンセプトを持つ。汎用テンプレートのような見た目を避ける
+- agri-gyosei.com/dacha：和モダン × refined minimal（侘び茶の静けさ）
+- agri-gyosei.com/sikaku：信頼感・誠実さ（行政書士らしい落ち着き）
+- agri-gyosei.com（メイン）：専門性 × 農のあたたかみ
+
+## 02 Typography — フォント選定と階層
+- 【最重要】Inter・Roboto・Arial・system-uiは使わない
+- 日本語：Noto Serif JP（見出し）+ Noto Sans JP（本文）を基本とする
+- 英字アクセントが必要な場合：Playfair Display / DM Serif Display / Cormorant Garamond など
+- 見出し・本文・キャプションで明確にサイズ・ウェイトの差をつける
+- line-height：見出し 1.3〜1.4、本文 1.75〜1.85
+
+## 03 Color system — 抑制されたカラーパレット
+- 1サイトあたり3〜5色以内。虹色パレットは使わない
+- dacha系：和紙 #F5F0E8 / 古木 #4A3728 / 苔 #7A9E7E / 土器 #8B7355 / 枯れ草 #C8B89A
+- CSS変数で定義し、ハードコードを散在させない
+```css
+  --color-base: #F5F0E8;
+  --color-primary: #4A3728;
+  --color-accent: #7A9E7E;
+  --color-mid: #8B7355;
+  --color-light: #C8B89A;
+```
+
+## 04 Hierarchy — 余白と視線誘導
+- ページに「一番見せたいもの」を1つ決め、それに視線が集まるレイアウトにする
+- セクション間のpaddingは最低 4rem（64px）以上
+- コンテンツの壁（テキストの塊）を作らない。段落間は 1.5em 以上あける
+- 重要度の低い情報はフォントサイズとコントラストを落とす
+
+## 05 Imagery — 意図ある画像選定
+- Unsplashの定番素材は使わない
+- アイキャッチはサイトのカラーパレットと色調を合わせる
+- 画像がない場合：CSS・SVGで代替表現を作る（画像なし＝デザインなし、にしない）
+
+## 06 Motion — 控えめで品のある動き
+- AOS（animate-on-scroll）の無差別fade-upは使わない
+- 使う場合：transition は 200〜400ms、easing は ease-out か cubic-bezier
+- ホバーエフェクト：transform と opacity のみ（色変化は最小限）
+- アニメーションは「あって当然」ではなく「なくても成立する」設計にする
+
+## 07 Mobile — スマホ専用設計（最重要）
+- 【最重要】デスクトップを縮小したものをモバイルと呼ばない
+- ブレークポイント：Mobile first（min-width）で書く
+- フォントサイズ：モバイルで本文 16px 以上（15px以下は読みにくい）
+- タップターゲット：最小 44×44px
+- モバイルでのナビゲーション・CTA は画面上部か固定フッターに配置
+- 横スクロールが発生していないか必ず確認する
+
+## 08 Invisible quality — 見えない品質（最重要）
+- 【最重要】Lighthouseスコア：Performance 90以上を目標
+- 画像：next/image を必ず使う（width・height 必須、priority は above-the-fold のみ）
+- フォント：next/font で読み込む（@import や <link> タグは使わない）
+- コントラスト比：WCAG AA 準拠（本文 4.5:1 以上、大テキスト 3:1 以上）
+- metaタグ：全ページに固有の title・description・og:title・og:description を設定
+- canonical：各ページに正しいURLを設定する
+- キーボードナビゲーション：Tab移動と Enterキーが全インタラクションで動く
+- セマンティックHTML：見出しは h1→h2→h3 の順で、飛ばさない
+
+---
+
+## チェックの使い方
+UIを新規作成・修正したら、出力前に以下を自己確認すること：
+- [ ] フォントはInter/Robotoを使っていないか
+- [ ] モバイルファーストで書いているか
+- [ ] next/image を使っているか
+- [ ] 全ページにユニークなmetaを設定したか
+- [ ] コントラスト比は確保できているか
