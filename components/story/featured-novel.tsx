@@ -207,6 +207,23 @@ export function FeaturedNovel() {
         description="三十年間、計画の内側にいた男が、初めて地上を見た。イスラエルの諜報機関員・エレズ。奥多摩の杉林で根を張り始める、「絵馬」と同時代を内側から描く物語。"
         href="/story/suginone-kozue-wa-ten-ni"
       />
+
+      <div className="mx-auto max-w-7xl px-6">
+        <div className="w-full h-px bg-gradient-to-r from-transparent via-gold/20 to-transparent" />
+      </div>
+
+      <NovelEntry
+        coverSrc="/images/takumi-cover.png"
+        coverAlt="拓海 ～救世主はあなた自身～ by 五十音 百"
+        genre="Literary Fiction · Mystery · 2027"
+        title="拓海"
+        subtitle="～救世主はあなた自身～"
+        author="五十音 百"
+        authorRoman="Isone Momo"
+        description="普通の若者・山下拓海は、ある日奥多摩の山で一人の男に出会う。救世主は、ずっと自分の内側にいたと気づく物語。"
+        href="/story/takumi-kyuseishu-wa-anata-jishin"
+        reverse
+      />
     </section>
   )
 }
