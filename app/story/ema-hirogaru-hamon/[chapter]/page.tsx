@@ -53,12 +53,16 @@ export async function generateMetadata({ params }: Props) {
   const idx = parseInt(chapterParam, 10) - 1
   if (isNaN(idx) || idx < 0 || idx >= chapters.length) return {}
   const current = chapters[idx]
+  const chapterUrl = `https://agri-gyosei.com/story/ema-hirogaru-hamon/${current.index}`
   return {
     title: `${current.label}「${current.title}」| 絵馬 ～広がる波紋～ | 時の杜`,
     description: '2026年、一人の日本人女性が気づき始める。遺跡の破壊、ユーフラテス川、黙示録の預言——すべてが一本の糸で繋がっていた。',
+    alternates: { canonical: chapterUrl },
     openGraph: {
       title: `${current.label}「${current.title}」| 絵馬 ～広がる波紋～`,
       description: '2026年、一人の日本人女性が気づき始める。遺跡の破壊、ユーフラテス川、黙示録の預言——すべてが一本の糸で繋がっていた。',
+      url: chapterUrl,
+      type: 'article',
       images: [{ url: '/images/ema-cover.png' }],
     },
   }

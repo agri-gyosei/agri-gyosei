@@ -52,12 +52,16 @@ export async function generateMetadata({ params }: Props) {
   const idx = parseInt(chapterParam, 10) - 1
   if (isNaN(idx) || idx < 0 || idx >= chapters.length) return {}
   const current = chapters[idx]
+  const chapterUrl = `https://agri-gyosei.com/story/suginone-kozue-wa-ten-ni/${current.index}`
   return {
     title: `${current.label}${current.label !== current.title ? `「${current.title}」` : ''} | 杉の根 ～梢は天に、根は地に～ | 時の杜`,
     description: '三十年間、計画の内側にいた男が初めて地上を見た。イスラエルの諜報機関員・エレズが奥多摩の杉林で根を張り始める物語。',
+    alternates: { canonical: chapterUrl },
     openGraph: {
       title: `${current.label} | 杉の根 ～梢は天に、根は地に～`,
       description: '三十年間、計画の内側にいた男が初めて地上を見た。イスラエルの諜報機関員・エレズが奥多摩の杉林で根を張り始める物語。',
+      url: chapterUrl,
+      type: 'article',
       images: [{ url: '/images/suginone-cover.png' }],
     },
   }

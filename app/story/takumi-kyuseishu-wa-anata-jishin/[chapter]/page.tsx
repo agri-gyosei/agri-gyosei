@@ -52,12 +52,16 @@ export async function generateMetadata({ params }: Props) {
   const idx = parseInt(chapterParam, 10) - 1
   if (isNaN(idx) || idx < 0 || idx >= chapters.length) return {}
   const current = chapters[idx]
+  const chapterUrl = `https://agri-gyosei.com/story/takumi-kyuseishu-wa-anata-jishin/${current.index}`
   return {
     title: `${current.label}${current.label !== current.title ? `「${current.title}」` : ''} | 拓海 ～救世主はあなた自身～ | 時の杜`,
     description: '普通の若者・山下拓海が気づき始める。救世主は、ずっと自分の内側にいたと。',
+    alternates: { canonical: chapterUrl },
     openGraph: {
       title: `${current.label} | 拓海 ～救世主はあなた自身～`,
       description: '普通の若者・山下拓海が気づき始める。救世主は、ずっと自分の内側にいたと。',
+      url: chapterUrl,
+      type: 'article',
       images: [{ url: '/images/takumi-cover.png' }],
     },
   }
