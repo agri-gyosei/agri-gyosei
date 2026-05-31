@@ -5,10 +5,23 @@ import Footer from './components/Footer'
 import { AnimatedHero, AnimatedArticleList } from './components/AnimatedArticles'
 
 export const metadata: Metadata = {
-  title: 'ダーチャという生き方｜農地と食料安全保障',
-  description: '農地取得・食料安全保障・ダーチャ文化について発信。外資による農地買い占めから日本の国土を守り、家族の食を自分たちの手で守る生き方を提案します。',
+  title: 'ダーチャという生き方 | agri-gyosei.com',
+  description: '食料自給・農地取得・兼業農家。ダーチャ的な暮らしを日本で実現するための情報メディア。',
   alternates: {
     canonical: 'https://agri-gyosei.com/dacha',
+  },
+  openGraph: {
+    title: 'ダーチャという生き方 | agri-gyosei.com',
+    description: '食料自給・農地取得・兼業農家。ダーチャ的な暮らしを日本で実現するための情報メディア。',
+    url: 'https://agri-gyosei.com/dacha',
+    siteName: 'agri-gyosei.com',
+    locale: 'ja_JP',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'ダーチャという生き方 | agri-gyosei.com',
+    description: '食料自給・農地取得・兼業農家。ダーチャ的な暮らしを日本で実現するための情報メディア。',
   },
 }
 

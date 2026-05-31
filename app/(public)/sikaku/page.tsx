@@ -5,10 +5,23 @@ import Footer from './components/Footer'
 import { AnimatedSikakuHero, AnimatedSikakuArticles } from './components/AnimatedSikakuContent'
 
 export const metadata: Metadata = {
-  title: '行政書士試験を半年で突破する｜agri-gyosei.com',
-  description: '毎日更新！社会人受験生のための行政書士試験合格ガイド。行政法・民法・憲法・商法を効率よく学ぶ。',
+  title: '行政書士試験を半年で取る | agri-gyosei.com',
+  description: '行政書士試験の勉強法・過去問解説・スケジュール管理。サラリーマンが働きながら半年合格を目指すブログ。',
   alternates: {
     canonical: 'https://agri-gyosei.com/sikaku',
+  },
+  openGraph: {
+    title: '行政書士試験を半年で取る | agri-gyosei.com',
+    description: '行政書士試験の勉強法・過去問解説・スケジュール管理。サラリーマンが働きながら半年合格を目指すブログ。',
+    url: 'https://agri-gyosei.com/sikaku',
+    siteName: 'agri-gyosei.com',
+    locale: 'ja_JP',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: '行政書士試験を半年で取る | agri-gyosei.com',
+    description: '行政書士試験の勉強法・過去問解説・スケジュール管理。サラリーマンが働きながら半年合格を目指すブログ。',
   },
 }
 

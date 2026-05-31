@@ -29,11 +29,13 @@ export const metadata: Metadata = {
     siteName: '時の杜',
     locale: 'ja_JP',
     type: 'website',
+    images: [{ url: 'https://agri-gyosei.com/images/goshiki-cover.png' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: '時の杜 | Toki no Mori',
     description: 'すべての物語は、想像の種から生まれる。時の杜が贈るフィクション作品レーベル。',
+    images: ['https://agri-gyosei.com/images/goshiki-cover.png'],
   },
 }
 

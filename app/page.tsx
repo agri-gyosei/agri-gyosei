@@ -1,3 +1,24 @@
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: '兼業農家を支える行政書士 | agri-gyosei.com',
+  description: '農業経営と行政手続きの橋渡し。兼業農家の方々を全力でサポートする行政書士事務所です。',
+  alternates: { canonical: 'https://agri-gyosei.com' },
+  openGraph: {
+    title: '兼業農家を支える行政書士 | agri-gyosei.com',
+    description: '農業経営と行政手続きの橋渡し。兼業農家の方々を全力でサポートする行政書士事務所です。',
+    url: 'https://agri-gyosei.com',
+    siteName: 'agri-gyosei.com',
+    locale: 'ja_JP',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: '兼業農家を支える行政書士 | agri-gyosei.com',
+    description: '農業経営と行政手続きの橋渡し。兼業農家の方々を全力でサポートする行政書士事務所です。',
+  },
+}
+
 export default function Home() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center relative overflow-hidden">
