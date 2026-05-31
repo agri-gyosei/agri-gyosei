@@ -88,7 +88,7 @@ export default function SuginoneKozuePage() {
       <Navigation />
 
       {/* Hero */}
-      <section className="relative pt-40 pb-24 px-6 text-center overflow-hidden">
+      <section className="relative pt-24 md:pt-40 pb-10 md:pb-24 px-6 text-center overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_0%,rgba(212,175,55,0.08),transparent_60%)]" />
 
         <motion.p
@@ -113,7 +113,7 @@ export default function SuginoneKozuePage() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.7 }}
-          className="text-paper/50 text-base md:text-lg tracking-widest mb-10"
+          className="text-paper/50 text-base md:text-lg tracking-widest mb-6 md:mb-10"
         >
           ～梢は天に、根は地に～
         </motion.p>
@@ -129,7 +129,7 @@ export default function SuginoneKozuePage() {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.1 }}
-          className="mt-10 text-paper/50 text-sm leading-relaxed max-w-xl mx-auto"
+          className="mt-6 md:mt-10 text-paper/50 text-sm leading-relaxed max-w-xl mx-auto"
         >
           三十年間、計画の内側にいた男が、初めて地上を見た。
           イスラエルの諜報機関員・エレズ。「絵馬」と同時代を、内側から描く物語。
@@ -163,7 +163,7 @@ export default function SuginoneKozuePage() {
               >
                 <span className="absolute left-0 top-0 h-full w-px bg-gradient-to-b from-transparent via-gold/0 to-transparent transition-all duration-500 group-hover:via-gold/40" />
 
-                <p className="font-serif text-gold/40 text-[0.65rem] tracking-[0.3em] mb-4 transition-colors duration-300 group-hover:text-gold/70">
+                <p className="font-serif text-gold/40 text-[0.65rem] tracking-[0.3em] mb-2 md:mb-4 transition-colors duration-300 group-hover:text-gold/70">
                   {ch.number}
                 </p>
 
@@ -171,13 +171,13 @@ export default function SuginoneKozuePage() {
                   {ch.title}
                 </h2>
 
-                <div className="w-8 h-px bg-gold/20 mb-4 transition-all duration-500 group-hover:w-12 group-hover:bg-gold/50" />
+                <div className="w-8 h-px bg-gold/20 mb-3 md:mb-4 transition-all duration-500 group-hover:w-12 group-hover:bg-gold/50" />
 
                 <p className="text-paper/40 text-sm leading-relaxed transition-colors duration-300 group-hover:text-paper/60">
                   {ch.excerpt}
                 </p>
 
-                <p className="mt-6 text-xs tracking-[0.3em] text-gold/0 transition-all duration-300 group-hover:text-gold/60">
+                <p className="mt-3 md:mt-6 text-xs tracking-[0.3em] text-gold/0 transition-all duration-300 group-hover:text-gold/60">
                   Read →
                 </p>
               </Link>
