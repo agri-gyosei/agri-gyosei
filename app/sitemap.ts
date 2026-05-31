@@ -3,6 +3,14 @@ import { createClient } from '@supabase/supabase-js'
 
 export const revalidate = 3600
 
+// 作品を追加したらここに追記する
+const NOVELS = [
+  { slug: 'goshiki-no-uta', chapters: 12 },
+  { slug: 'ema-hirogaru-hamon', chapters: 15 },
+  { slug: 'suginone-kozue-wa-ten-ni', chapters: 12 },
+  { slug: 'takumi-kyuseishu-wa-anata-jishin', chapters: 10 },
+]
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const supabase = createClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -43,6 +51,29 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ]
 
+  const storyPages: MetadataRoute.Sitemap = [
+    {
+      url: 'https://agri-gyosei.com/story',
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    ...NOVELS.flatMap(({ slug, chapters }) => [
+      {
+        url: `https://agri-gyosei.com/story/${slug}`,
+        lastModified: new Date(),
+        changeFrequency: 'monthly' as const,
+        priority: 0.7,
+      },
+      ...Array.from({ length: chapters }, (_, i) => ({
+        url: `https://agri-gyosei.com/story/${slug}/${i + 1}`,
+        lastModified: new Date(),
+        changeFrequency: 'monthly' as const,
+        priority: 0.6,
+      })),
+    ]),
+  ]
+
   const sikakuPages: MetadataRoute.Sitemap = (sikakuArticles ?? []).map((article) => ({
     url: `https://agri-gyosei.com/sikaku/${article.slug}`,
     lastModified: new Date(article.published_at),
@@ -57,5 +88,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.7,
   }))
 
-  return [...staticPages, ...sikakuPages, ...dachaPages]
+  return [...staticPages, ...storyPages, ...sikakuPages, ...dachaPages]
 }

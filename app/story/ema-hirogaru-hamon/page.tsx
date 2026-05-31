@@ -1,4 +1,4 @@
-"use client"
+﻿"use client"
 
 import { motion, type Variants } from "framer-motion"
 import Link from "next/link"
@@ -152,13 +152,13 @@ export default function EmaHirogaruHamonPage() {
       </section>
 
       {/* Chapter grid */}
-      <section className="max-w-6xl mx-auto px-6 pb-32">
+      <section className="max-w-6xl mx-auto px-6 pb-16 md:pb-32">
         <motion.p
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-gold text-xs tracking-[0.5em] uppercase mb-12"
+          className="text-gold text-xs tracking-[0.5em] uppercase mb-6 md:mb-12"
         >
           Chapters
         </motion.p>
@@ -168,13 +168,13 @@ export default function EmaHirogaruHamonPage() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-60px" }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4"
         >
           {CHAPTERS.map((ch, i) => (
             <motion.div key={i} variants={cardVariants}>
               <Link
                 href={`/story/ema-hirogaru-hamon/${i + 1}`}
-                className="group block relative rounded-sm border border-paper/10 bg-white/5 backdrop-blur-sm p-6 transition-all duration-500 hover:border-gold/30 hover:bg-white/[0.08]"
+                className="group block relative rounded-sm border border-paper/10 bg-white/5 backdrop-blur-sm p-4 md:p-6 transition-all duration-500 hover:border-gold/30 hover:bg-white/[0.08]"
               >
                 <span className="absolute left-0 top-0 h-full w-px bg-gradient-to-b from-transparent via-gold/0 to-transparent transition-all duration-500 group-hover:via-gold/40" />
 
