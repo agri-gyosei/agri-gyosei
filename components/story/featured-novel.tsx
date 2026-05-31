@@ -191,6 +191,22 @@ export function FeaturedNovel() {
         href="/story/ema-hirogaru-hamon"
         reverse
       />
+
+      <div className="mx-auto max-w-7xl px-6">
+        <div className="w-full h-px bg-gradient-to-r from-transparent via-gold/20 to-transparent" />
+      </div>
+
+      <NovelEntry
+        coverSrc="/images/suginone-cover.png"
+        coverAlt="杉の根 ～梢は天に、根は地に～ by 五十音 百"
+        genre="Literary Fiction · Mystery · 2026"
+        title="杉の根"
+        subtitle="～梢は天に、根は地に～"
+        author="五十音 百"
+        authorRoman="Isone Momo"
+        description="三十年間、計画の内側にいた男が、初めて地上を見た。イスラエルの諜報機関員・エレズ。奥多摩の杉林で根を張り始める、「絵馬」と同時代を内側から描く物語。"
+        href="/story/suginone-kozue-wa-ten-ni"
+      />
     </section>
   )
 }
