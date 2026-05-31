@@ -16,7 +16,7 @@ export function PhilosophySection() {
   return (
     <section
       ref={containerRef}
-      className="relative min-h-screen w-full bg-background flex items-center justify-center py-32 md:py-48"
+      className="relative w-full bg-background flex items-center justify-center py-16 md:py-48"
     >
       {/* Background texture */}
       <div className="absolute inset-0 opacity-30">
@@ -51,7 +51,7 @@ export function PhilosophySection() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.8 }}
-          className="mt-16"
+          className="mt-8 md:mt-16"
         >
           <div className="w-12 h-px bg-gold/40 mx-auto mb-6" />
           <p className="text-gold/70 text-sm tracking-[0.3em]">

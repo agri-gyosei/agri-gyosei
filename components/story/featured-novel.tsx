@@ -184,7 +184,7 @@ export function FeaturedNovel() {
 
   return (
     <section ref={sectionRef} id="featured" className="relative w-full bg-background">
-      <div className="mx-auto max-w-7xl px-6 pt-32 md:pt-48">
+      <div className="mx-auto max-w-7xl px-6 pt-12 md:pt-48">
         <motion.p
           style={{ opacity }}
           className="text-gold text-xs tracking-[0.5em] uppercase mb-0"

@@ -23,9 +23,9 @@ export function AuthorSection() {
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-ink to-ink" />
 
-      <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 min-h-screen">
+      <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2">
         {/* Image side */}
-        <div className="relative h-[60vh] lg:h-auto overflow-hidden">
+        <div className="relative h-[40vh] lg:h-[70vh] overflow-hidden">
           <motion.div
             style={{ scale: imageScale }}
             className="absolute inset-0"
@@ -45,7 +45,7 @@ export function AuthorSection() {
         </div>
 
         {/* Content side */}
-        <div className="relative flex items-center px-6 py-24 lg:py-32 lg:px-16 xl:px-24">
+        <div className="relative flex items-center px-6 py-10 lg:py-32 lg:px-16 xl:px-24">
           <motion.div
             style={{ opacity: textOpacity }}
             className="max-w-xl"
@@ -56,7 +56,7 @@ export function AuthorSection() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-gold text-xs tracking-[0.5em] uppercase mb-12"
+              className="text-gold text-xs tracking-[0.5em] uppercase mb-6 md:mb-12"
             >
               The Author
             </motion.p>
@@ -78,7 +78,7 @@ export function AuthorSection() {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.5 }}
-              className="text-gold/60 text-sm tracking-widest mb-12"
+              className="text-gold/60 text-sm tracking-widest mb-6 md:mb-12"
             >
               Isone Momo
             </motion.p>
@@ -89,7 +89,7 @@ export function AuthorSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.6 }}
-              className="text-paper/60 text-base md:text-lg leading-relaxed mb-8"
+              className="text-paper/60 text-base md:text-lg leading-relaxed mb-4 md:mb-8"
             >
               言葉の奥に潜む真実を紡ぐ作家。現代と古代、現実と幻想の狭間を行き来する
               独自の世界観で、読者を未知の物語へと誘う。
@@ -100,7 +100,7 @@ export function AuthorSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.7 }}
-              className="text-paper/60 text-base md:text-lg leading-relaxed mb-16"
+              className="text-paper/60 text-base md:text-lg leading-relaxed mb-8 md:mb-16"
             >
               デビュー作『五色の詩』は、失われた文明の記憶と現代を生きる子供たちの
               成長を描いた意欲作として注目を集めている。
