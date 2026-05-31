@@ -149,3 +149,8 @@ Claude Codeは以下を毎回実行すること：
 - dacha-knowledge.md は通常の記事生成では参照しない
 - 国防・食料安全保障・土地取得・家族を守る・国土を守る
   などのテーマを含むダーチャ記事を書くときのみ参照する
+
+# Design Quality
+Follow the frontend-design skill for all UI work.
+Use kusumiPink (#D4A5A5) + terracotta (#C4704F) + offwhite (#F8F5F0) color system.
+Avoid Inter, Roboto, Arial. Choose editorial fonts.
